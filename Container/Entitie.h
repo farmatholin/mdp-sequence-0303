@@ -1,3 +1,4 @@
+#pragma once
 #ifndef ENTITIE_H
 #define ENTITIE_H
 
@@ -13,6 +14,7 @@ class Field;
 class Entitie {
 protected:
     string ID;
+	double hourCost;
     List<Field*>* myfield;
     List<Work*>* myWork;
 
@@ -23,6 +25,8 @@ public:
 public:
     string getID();
     void setID(string ID);
+	double getHourCost();
+	void setHourCost(double hourCost);
 	
 public:
     Field* 	fieldAt(int i);

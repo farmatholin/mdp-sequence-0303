@@ -77,8 +77,40 @@ int main(int argc, char *argv[])
 	entitieList->push_back(new Entitie(" GR GR GR "));
 	printf("ADD Entitie %s \n", entitieList->at(3)->getID().c_str());
 
+	delete(entitieList);
 	printf("\n===================================================\n");
-	system("pause");
 
+	printf("\n===================Test Sequence and Work======================\n");
+	Entitie* placeHoler = new Entitie("PlaceHolder");
+	Entitie* pm = new Entitie("PM");
+	Work* startProcess = new Work("Start Work", 0);
+	Work* endProcess = new Work("End Work", 0);
+	Work* createDocument = new Work("CreateDocument", 10);
+	Sequence* startCreate = new Sequence("startWork", "1 Create Work", startProcess, createDocument);
+	Sequence* createEnd = new Sequence("endWork", "2 End Work", createDocument, endProcess);
+
+	startProcess->setEntitie(placeHoler);
+	startProcess->setSequinceFrom(NULL);
+	startProcess->setSequinceTo(startCreate);
+
+	createDocument->setEntitie(pm);
+	createDocument->setSequinceFrom(startCreate);
+	createDocument->setSequinceTo(createEnd);
+
+	endProcess->setEntitie(placeHoler);
+	endProcess->setSequinceFrom(createEnd);
+	endProcess->setSequinceTo(NULL);
+
+	placeHoler->addWork(startProcess);
+	placeHoler->addWork(endProcess);
+
+	pm->addWork(createDocument);
+
+	printf("\n===================================================\n");
+	delete(pm);
+	delete(placeHoler);
+
+		
+	system("pause");
 	return 0;
 }

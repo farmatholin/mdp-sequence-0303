@@ -1,3 +1,4 @@
+#pragma once
 #ifndef DoubleField_H
 #define DoubleField_H
 

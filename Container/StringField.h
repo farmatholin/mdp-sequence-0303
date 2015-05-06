@@ -1,3 +1,4 @@
+#pragma once
 #ifndef STRINGFIELD_H
 #define STRINGFIELD_H
 

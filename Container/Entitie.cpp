@@ -36,6 +36,14 @@ void Entitie::setID(string ID){
     this->ID = ID;
 }
 
+double Entitie::getHourCost(){
+	return this->hourCost;
+}
+
+void Entitie::setHourCost(double hourCost){
+	this->hourCost = hourCost;
+}
+
 Field* Entitie::fieldAt(int i){
     return this->myfield->at(i);
 }

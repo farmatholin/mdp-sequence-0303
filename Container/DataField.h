@@ -1,3 +1,4 @@
+#pragma once
 #ifndef DATAFIELD_H
 #define DATAFIELD_H
 

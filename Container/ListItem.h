@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LISTITEM_H
 #define LISTITEM_H
 template<class Type>

@@ -6,7 +6,8 @@ Work::Work(string ID, double workTime){
 }
 
 Work::~Work(){
-	delete(workEntity);
+	delete(to);
+	//delete(from);
 }
 
 string Work::getID(){
@@ -21,9 +22,23 @@ void Work::setWorkTime(double workTime){
 	this->workTime = workTime;
 }
 
-void Work::setEntity(Entity* e){
-	this->workEntity = e;
+void Work::setEntitie(Entitie* e){
+	this->workEntitie = e;
 }
-Entity* Work::getEntity(){
-	return this->workEntity;
+Entitie* Work::getEntitie(){
+	return this->workEntitie;
+}
+
+void Work::setSequinceFrom(Sequence* from){
+	this->from = from;
+}
+Sequence* Work::getSequinceFrom(){
+	return this->from;
+}
+
+void Work::setSequinceTo(Sequence* to){
+	this->to = to;
+}
+Sequence* Work::getSequinceTo(){
+	return to;
 }
