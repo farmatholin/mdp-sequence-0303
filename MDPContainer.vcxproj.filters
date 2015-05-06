@@ -15,16 +15,55 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="contaner\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="Container\DataField.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\DoubleField.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\Entitie.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\Field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\IntField.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\List.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\ListItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\StringField.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\Work.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="contaner\List.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="contaner\ListItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClCompile Include="Container\DoubleField.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Container\Entitie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Container\Field.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Container\IntField.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Container\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Container\StringField.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Container\Work.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

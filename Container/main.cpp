@@ -2,6 +2,8 @@
 #include <conio.h>
 #include <iostream>
 #include "List.h"
+#include "Entitie.h"
+#include "Work.h"
 
 using namespace std;
 
@@ -52,14 +54,6 @@ int main(int argc, char *argv[])
 	list->popAt(0);
 	list->popAt(4);
 	list->popAt(3);
-	//        for(int j=0; j<100; j++){
-	//            for(int i=0; i<10; i++){
-	//                list->push_back(1);
-	//            }
-	//            for(int i=0; i<10; i++){
-	//                list->popAt(0);
-	//            }
-	//        }
 	printf("\n");
 	for (int i = 0; i<list->size(); i++){
 		printf("%d ", list->at(i));
@@ -68,6 +62,22 @@ int main(int argc, char *argv[])
 
 	printf("\n===================================================\n");
 
+	printf("\n===================Test Entity======================\n");
+
+	List<Entitie*>* entitieList = new List<Entitie*>();
+	entitieList->push_back(new Entitie("123"));
+	printf("ADD Entitie %s \n", entitieList->at(0)->getID().c_str());
+
+	entitieList->push_back(new Entitie("GAGA"));
+	printf("ADD Entitie %s \n", entitieList->at(1)->getID().c_str());
+
+	entitieList->push_back(new Entitie("ZAZAZA"));
+	printf("ADD Entitie %s \n", entitieList->at(2)->getID().c_str());
+
+	entitieList->push_back(new Entitie(" GR GR GR "));
+	printf("ADD Entitie %s \n", entitieList->at(3)->getID().c_str());
+
+	printf("\n===================================================\n");
 	system("pause");
 
 	return 0;

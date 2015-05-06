@@ -1,4 +1,5 @@
-
+#ifndef LISTITEM_H
+#define LISTITEM_H
 template<class Type>
 class ListItem{
     private:
@@ -52,3 +53,4 @@ template<class Type>
 Type ListItem<Type>::getValue(){
     return x;
 }
+#endif

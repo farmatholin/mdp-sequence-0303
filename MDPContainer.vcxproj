@@ -10,6 +10,26 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Container\DataField.h" />
+    <ClInclude Include="Container\DoubleField.h" />
+    <ClInclude Include="Container\Entitie.h" />
+    <ClInclude Include="Container\Field.h" />
+    <ClInclude Include="Container\IntField.h" />
+    <ClInclude Include="Container\List.h" />
+    <ClInclude Include="Container\ListItem.h" />
+    <ClInclude Include="Container\StringField.h" />
+    <ClInclude Include="Container\Work.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Container\DoubleField.cpp" />
+    <ClCompile Include="Container\Entitie.cpp" />
+    <ClCompile Include="Container\Field.cpp" />
+    <ClCompile Include="Container\IntField.cpp" />
+    <ClCompile Include="Container\main.cpp" />
+    <ClCompile Include="Container\StringField.cpp" />
+    <ClCompile Include="Container\Work.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{680001DB-D609-4EA9-96A3-53874256C88F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -70,13 +90,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="contaner\main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="contaner\List.h" />
-    <ClInclude Include="contaner\ListItem.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,4 +1,5 @@
-
+#ifndef LIST_H
+#define LIST_H
 //=============================================================
 #include <stdexcept>
 #include "ListItem.h"
@@ -112,3 +113,4 @@ bool List<T>::popAt(int i){
     }
     return false;
 }
+#endif // LIST_H
