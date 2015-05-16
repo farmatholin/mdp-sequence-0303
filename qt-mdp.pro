@@ -25,13 +25,13 @@ SOURCES += main.cpp\
     Factory/projectmanagerfactory.cpp \
     Container/SequenceDiagram.cpp \
     Entities/projectmanager.cpp \
-    Entities/programmist.cpp \
     Entities/designer.cpp \
-    Entities/testir.cpp \
     Container/Entity.cpp \
-    Factory/entityfactory.cpp \
+    UI/uientity.cpp \
     UI/ui.cpp \
-    UI/uientity.cpp
+    Factory/entityfactory.cpp \
+    Entities/programmer.cpp \
+    Entities/qa.cpp
 
 HEADERS  += mainwindow.h \
     Container/DataField.h \
@@ -46,12 +46,12 @@ HEADERS  += mainwindow.h \
     Container/Core.h \
     Factory/projectmanagerfactory.h \
     Container/SequenceDiagram.h \
-    Container/Entity.h \
-    Factory/entityfactory.h \
-    UI/ui.h \
-    Entities/designer.h \
-    Entities/programmist.h \
     Entities/projectmanager.h \
-    Entities/testir.h \
-    UI/uientity.h
+    Entities/designer.h \
+    Container/Entity.h \
+    UI/uientity.h \
+    UI/ui.h \
+    Factory/entityfactory.h \
+    Entities/programmer.h \
+    Entities/qa.h
 FORMS    += mainwindow.ui

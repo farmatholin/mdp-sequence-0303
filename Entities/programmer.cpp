@@ -1,21 +1,21 @@
-#include "programmist.h"
+#include "programmer.h"
 #include "Container/DoubleField.h"
 #include "Container/IntField.h"
 #include "Container/StringField.h"
 #include <QString>
 
-Programmist::Programmist():Entity("proger"+QString::number(id++).toStdString()){
+Programmer::Programmer():Entity("proger"+QString::number(id++).toStdString()){
     this->setHourCost(15.5);
     this->myfield->push_back(new StringField("Tittle","Программист - "+ QString::number(id).toStdString()));
 }
 
-Programmist::~Programmist()
+Programmer::~Programmer()
 {
 
 }
 
-void Programmist::setId(int id0){
+void Programmer::setId(int id0){
     id = id0;
 }
 
-int Programmist::id = 0;
+int Programmer::id = 0;

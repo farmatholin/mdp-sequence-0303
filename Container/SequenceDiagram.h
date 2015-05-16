@@ -23,9 +23,10 @@ public:
     ~SequenceDiagram();
 
 public:
-    int getEntitysCount();
+    int getEntitiesCount();
     int getWorksCount();
     int getSequencesCount();
+    List<Entity*>* getAllEntities();
 
 public:
     void addEntity(string ID);

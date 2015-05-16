@@ -3,8 +3,7 @@
 #define PROJECTMANAGERFACTORY_H
 #include "Container/Entity.h"
 
-class ProjectManagerFactory
-{
+class ProjectManagerFactory{
 public:
     ProjectManagerFactory();
     Entity* getProjectManager();
