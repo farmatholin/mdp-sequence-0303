@@ -26,7 +26,11 @@ SOURCES += main.cpp\
     Container/oldmain.cpp \
     Container/Core.cpp \
     Factory/entitiefactory.cpp \
-    Factory/projectmanagerfactory.cpp
+    Factory/projectmanagerfactory.cpp \
+    Entities/projectmanager.cpp \
+    Entities/programmist.cpp \
+    Entities/designer.cpp \
+    Entities/testir.cpp
 
 HEADERS  += mainwindow.h \
         entity.h \
@@ -43,5 +47,9 @@ HEADERS  += mainwindow.h \
     Container/Work.h \
     Container/Core.h \
     Factory/entitiefactory.h \
-    Factory/projectmanagerfactory.h
+    Factory/projectmanagerfactory.h \
+    Entities/projectmanager.h \
+    Entities/programmist.h \
+    Entities/designer.h \
+    Entities/testir.h
 FORMS    += mainwindow.ui
