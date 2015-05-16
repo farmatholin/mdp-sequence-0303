@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <iostream>
 #include "Container/List.h"
-#include "Container/Entitie.h"
+#include "Container/Entity.h"
 #include "Container/Work.h"
 
 using namespace std;
@@ -65,25 +65,25 @@ int main(int argc, char *argv[])
 
     printf("\n===================Test Entity======================\n");
 
-    List<Entitie*>* entitieList = new List<Entitie*>();
-    entitieList->push_back(new Entitie("123"));
+    List<Entity*>* entitieList = new List<Entity*>();
+    entitieList->push_back(new Entity("123"));
     printf("ADD Entitie %s \n", entitieList->at(0)->getID().c_str());
 
-    entitieList->push_back(new Entitie("GAGA"));
+    entitieList->push_back(new Entity("GAGA"));
     printf("ADD Entitie %s \n", entitieList->at(1)->getID().c_str());
 
-    entitieList->push_back(new Entitie("ZAZAZA"));
+    entitieList->push_back(new Entity("ZAZAZA"));
     printf("ADD Entitie %s \n", entitieList->at(2)->getID().c_str());
 
-    entitieList->push_back(new Entitie(" GR GR GR "));
+    entitieList->push_back(new Entity(" GR GR GR "));
     printf("ADD Entitie %s \n", entitieList->at(3)->getID().c_str());
 
     delete(entitieList);
     printf("\n===================================================\n");
 
     printf("\n===================Test Sequence and Work======================\n");
-    Entitie* placeHoler = new Entitie("PlaceHolder");
-    Entitie* pm = new Entitie("PM");
+    Entity* placeHoler = new Entity("PlaceHolder");
+    Entity* pm = new Entity("PM");
     Work* startProcess = new Work("Start Work", 0);
     Work* endProcess = new Work("End Work", 0);
     Work* createDocument = new Work("CreateDocument", 10);

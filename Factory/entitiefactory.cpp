@@ -2,20 +2,20 @@
 #include "QString"
 #include "Container/DoubleField.h"
 #include "Container/IntField.h"
-#include "Container/Entitie.h"
+#include "Container/Entity.h"
 
 
-Entitie* EntitieFactory::createEntitie(Entitie_Types t){
-    Entitie* e = NULL;
+Entity* EntitieFactory::createEntitie(Entitie_Types t){
+    Entity* e = NULL;
     switch(t){
         case 0:
-            e = new Entitie("Сущность "+QString::number(id++).toStdString());
+            e = new Entity("Сущность "+QString::number(id++).toStdString());
             break;
         case 1:
             //e = this->scf->createCar();
             break;
         default:
-            e = new Entitie("Сущность "+QString::number(id++).toStdString());
+            e = new Entity("Сущность "+QString::number(id++).toStdString());
     }
     DeleteFactory();
     return e;

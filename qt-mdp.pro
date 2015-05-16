@@ -14,9 +14,7 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-        entity.cpp \
     Container/DoubleField.cpp \
-    Container/Entitie.cpp \
     Container/Field.cpp \
     Container/IntField.cpp \
     Container/Sequence.cpp \
@@ -26,20 +24,17 @@ SOURCES += main.cpp\
     Container/Core.cpp \
     Factory/entitiefactory.cpp \
     Factory/projectmanagerfactory.cpp \
-<<<<<<< HEAD
-    Container/SequenceDiagram.cpp
-=======
+    Container/SequenceDiagram.cpp \
     Entities/projectmanager.cpp \
     Entities/programmist.cpp \
     Entities/designer.cpp \
-    Entities/testir.cpp
->>>>>>> 31b6c9a3211ddccb6cb98c355c2bfc444fbfa980
+    Entities/testir.cpp \
+    Container/Entity.cpp \
+    uientity.cpp
 
 HEADERS  += mainwindow.h \
-        entity.h \
     Container/DataField.h \
     Container/DoubleField.h \
-    Container/Entitie.h \
     Container/Field.h \
     Container/IntField.h \
     Container/List.h \
@@ -50,12 +45,11 @@ HEADERS  += mainwindow.h \
     Container/Core.h \
     Factory/entitiefactory.h \
     Factory/projectmanagerfactory.h \
-<<<<<<< HEAD
-    Container/SequenceDiagram.h
-=======
+    Container/SequenceDiagram.h \
     Entities/projectmanager.h \
     Entities/programmist.h \
     Entities/designer.h \
-    Entities/testir.h
->>>>>>> 31b6c9a3211ddccb6cb98c355c2bfc444fbfa980
+    Entities/testir.h \
+    Container/Entity.h \
+    uientity.h
 FORMS    += mainwindow.ui

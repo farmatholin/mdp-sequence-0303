@@ -4,18 +4,18 @@
 #include <string>
 
 #include "List.h"
-#include "Entitie.h"
+#include "Entity.h"
 #include "Sequence.h"
 
 
-class Entitie;
+class Entity;
 class Sequence;
 class Work;
 
 class SequenceDiagram{
 private:
     string ID;
-	List<Entitie*>* entities;
+    List<Entity*>* entities;
 	List<Sequence*>* sequences;
 	List<Work*>* works;
 public:
@@ -29,15 +29,15 @@ public:
 
 public:
     void addEntitie(string ID);
-    void addUserEntitie(Entitie* e);
-    Entitie* entitieAt(int i);
-    Entitie* entitieById(string ID);
+    void addUserEntitie(Entity* e);
+    Entity* entitieAt(int i);
+    Entity* entitieById(string ID);
     void popEntitieAt(int i);
     void popEntitieByID(string ID);
     int getEntitieIndexByID(string ID);
 
 public:
-    void addWork(string ID, double workTime, Entitie* to);
+    void addWork(string ID, double workTime, Entity* to);
     void addUserWork(Work* work);
     Work* getWorkAt(int i);
     Work* getWorkByID(string ID);

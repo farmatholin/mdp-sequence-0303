@@ -4,7 +4,7 @@
 #include "Container/StringField.h"
 #include <QString>
 
-ProjectManager::ProjectManager():Entitie("PM"+QString::number(id++).toStdString()){
+ProjectManager::ProjectManager():Entity("PM"+QString::number(id++).toStdString()){
     this->setHourCost(25.5);
     this->myfield->push_back(new StringField("Tittle","PM - "+ QString::number(id).toStdString()));
 }

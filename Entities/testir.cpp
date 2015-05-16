@@ -4,7 +4,7 @@
 #include "Container/StringField.h"
 #include <QString>
 
-Testir::Testir():Entitie("tester"+QString::number(id++).toStdString()){
+Testir::Testir():Entity("tester"+QString::number(id++).toStdString()){
     this->setHourCost(12.5);
     this->myfield->push_back(new StringField("Tittle","Тестировщик - "+ QString::number(id).toStdString()));
 }

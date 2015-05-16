@@ -1,6 +1,6 @@
 #pragma once
-#ifndef ENTITIE_H
-#define ENTITIE_H
+#ifndef ENTITY_H
+#define ENTITY_H
 
 //=====================================================
 #include <string>
@@ -11,7 +11,7 @@ using namespace std;
 class Work;
 class Field;
 
-class Entitie {
+class Entity {
 protected:
     string ID;
 	double hourCost;
@@ -19,8 +19,8 @@ protected:
     List<Work*>* myWork;
 
 public:
-    explicit Entitie(string ID);
-    virtual ~Entitie();
+    explicit Entity(string ID);
+    virtual ~Entity();
 	
 public:
     string getID();

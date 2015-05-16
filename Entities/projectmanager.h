@@ -1,9 +1,9 @@
 #ifndef PROJECTMANAGER_H
 #define PROJECTMANAGER_H
-#include "Container/Entitie.h"
+#include "Container/Entity.h"
 
-class Entitie;
-class ProjectManager : public Entitie{
+class Entity;
+class ProjectManager : public Entity{
 private:
     static int id;
 public:

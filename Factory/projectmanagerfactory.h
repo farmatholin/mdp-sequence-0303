@@ -1,13 +1,13 @@
 #pragma once
 #ifndef PROJECTMANAGERFACTORY_H
 #define PROJECTMANAGERFACTORY_H
-#include "Container/Entitie.h"
+#include "Container/Entity.h"
 
 class ProjectManagerFactory
 {
 public:
     ProjectManagerFactory();
-    Entitie* getProjectManager();
+    Entity* getProjectManager();
 };
 
 #endif // PROJECTMANAGERFACTORY_H

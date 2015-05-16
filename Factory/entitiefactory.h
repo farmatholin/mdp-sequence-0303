@@ -2,7 +2,7 @@
 #ifndef ENTITIEFACTORY_H
 #define ENTITIEFACTORY_H
 
-#include "Container/Entitie.h"
+#include "Container/Entity.h"
 
 enum Entitie_Types{
     _Empty,
@@ -29,7 +29,7 @@ public:
     static EntitieFactory* entitieFactory();
     static void setGlobalId(int id0);
     static void DeleteFactory();
-    Entitie* createEntitie(Entitie_Types t);
+    Entity* createEntitie(Entitie_Types t);
 };
 
 #endif // ENTITIEFACTORY_H

@@ -8,7 +8,7 @@
 //=====================================================
 using namespace std;
 
-class Entitie;
+class Entity;
 class Sequence;
 
 class Work
@@ -16,7 +16,7 @@ class Work
 private:
 	string ID;
 	double workTime;
-	Entitie* workEntitie;
+    Entity* workEntitie;
 	Sequence* to;
 	Sequence* from;
 	
@@ -25,8 +25,8 @@ public:
 	string getID();
 	double getWorkTime();
 	void setWorkTime(double workTime);
-	void setEntitie(Entitie* e);
-	Entitie* getEntitie();
+    void setEntitie(Entity* e);
+    Entity* getEntitie();
 	
 	void setSequinceFrom(Sequence* from);
 	Sequence* getSequinceFrom();

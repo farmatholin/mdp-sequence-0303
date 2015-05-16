@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QWidget>
-#include <entity.h>
+#include <uientity.h>
 
 #include <QList>
 
@@ -28,7 +28,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    QList<Entity *> *entities;
+    QList<UIEntity *> *entities;
 
 };
 

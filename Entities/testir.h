@@ -1,9 +1,9 @@
 #ifndef TESTIR_H
 #define TESTIR_H
-#include "Container/Entitie.h"
+#include "Container/Entity.h"
 
-class Entitie;
-class Testir : public Entitie{
+class Entity;
+class Testir : public Entity{
 private:
     static int id;
 public:

@@ -1,20 +1,20 @@
-#include "entity.h"
+#include "uientity.h"
 #include <QLabel>
 #include <QString>
 
-void Entity::show()
+void UIEntity::show()
 {
     QWidget::show();
     this->label->show();
 }
 
-void Entity::setText(QString text)
+void UIEntity::setText(QString text)
 {
     this->text = text;
     this->label->setText(text);
 }
 
-QString Entity::getText()
+QString UIEntity::getText()
 {
     return this->text;
 }

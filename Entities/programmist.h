@@ -1,9 +1,9 @@
 #ifndef PROGRAMMIST_H
 #define PROGRAMMIST_H
-#include "Container/Entitie.h"
+#include "Container/Entity.h"
 
-class Entitie;
-class Programmist : public Entitie{
+class Entity;
+class Programmist : public Entity{
 private:
     static int id;
 public:

@@ -22,10 +22,10 @@ void Work::setWorkTime(double workTime){
 	this->workTime = workTime;
 }
 
-void Work::setEntitie(Entitie* e){
+void Work::setEntitie(Entity* e){
 	this->workEntitie = e;
 }
-Entitie* Work::getEntitie(){
+Entity* Work::getEntitie(){
 	return this->workEntitie;
 }
 

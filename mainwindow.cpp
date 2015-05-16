@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "entity.h"
+#include "uientity.h"
 #include <QRect>
 #include <QLayout>
 #include <QSizePolicy>
@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    entities = new QList<Entity*>();
+    entities = new QList<UIEntity*>();
 
     QScrollArea *scroll = new QScrollArea(this);
     scroll->setBackgroundRole(QPalette::Dark);
@@ -37,33 +37,33 @@ void MainWindow::on_addEntityButton_clicked()
 {
     int x = 0, y = 0;
 
-    x = entities->length() > 0 ? entities->last()->geometry().x() + Entity::WIDTH + 20 : 0;
+    x = entities->length() > 0 ? entities->last()->geometry().x() + UIEntity::WIDTH + 20 : 0;
 
-    Entity *entity = new Entity(ui->widget);
-    entity->setGeometry(x,0, Entity::WIDTH, Entity::HEIGHT);
-    entity->setText(ui->entityNameEdit->text());
+    UIEntity *uientity = new UIEntity(ui->widget);
+    uientity->setGeometry(x,0, UIEntity::WIDTH, UIEntity::HEIGHT);
+    uientity->setText(ui->entityNameEdit->text());
 
     QWidget *line = new QWidget(ui->widget);
     line->setStyleSheet("background-color:black;");
-    line->setGeometry(x + (Entity::WIDTH / 2), Entity::HEIGHT, 1, 400);
+    line->setGeometry(x + (UIEntity::WIDTH / 2), UIEntity::HEIGHT, 1, 400);
     line->show();
 
     ui->entitySelector->addItem(ui->entityNameEdit->text());
 
-    ui->widget->setGeometry(0, 0, x + Entity::WIDTH ,400);
-    entity->show();
+    ui->widget->setGeometry(0, 0, x + UIEntity::WIDTH ,400);
+    uientity->show();
 
-    entities->append(entity);
+    entities->append(uientity);
 }
 
 void MainWindow::on_addTaskButton_clicked()
 {
     int x = 0, y = 100;
 
-//    foreach (Entity *entity, entities) {
+//    foreach (UIEntity *UIEntity, entities) {
     for (int i = 0; i < entities->length(); i++) {
         if (entities->at(i)->getText() == ui->entitySelector->currentText()) {
-            x = entities->at(i)->geometry().x() + (Entity::WIDTH / 2) - 25;
+            x = entities->at(i)->geometry().x() + (UIEntity::WIDTH / 2) - 25;
         }
     }
 

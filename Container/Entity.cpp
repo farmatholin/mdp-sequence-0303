@@ -1,4 +1,4 @@
-#include "Entitie.h"
+#include "Entity.h"
 
 //=====================================================
 #include "Field.h"
@@ -9,13 +9,13 @@
 //=====================================================
 
 
-Entitie::Entitie(string ID){
+Entity::Entity(string ID){
     this->ID = ID;
     this->myfield = new List<Field*>();
     this->myWork = new List<Work*>();
 }
 
-Entitie::~Entitie(){
+Entity::~Entity(){
     for(int i=0; i<this->myfield->size(); i++){
         delete(myfield->at(i));
     }
@@ -28,27 +28,27 @@ Entitie::~Entitie(){
     delete(myWork);
 }
 
-string Entitie::getID(){
+string Entity::getID(){
     return this->ID;
 }
 
-void Entitie::setID(string ID){
+void Entity::setID(string ID){
     this->ID = ID;
 }
 
-double Entitie::getHourCost(){
+double Entity::getHourCost(){
 	return this->hourCost;
 }
 
-void Entitie::setHourCost(double hourCost){
+void Entity::setHourCost(double hourCost){
 	this->hourCost = hourCost;
 }
 
-Field* Entitie::fieldAt(int i){
+Field* Entity::fieldAt(int i){
     return this->myfield->at(i);
 }
 
-Field* 	Entitie::fieldByID(string ID){
+Field* 	Entity::fieldByID(string ID){
     for(int i=0; i<this->myfield->size(); i++){
         if(this->myfield->at(i)->getID()==ID){
             return this->myfield->at(i);
@@ -57,32 +57,32 @@ Field* 	Entitie::fieldByID(string ID){
     return NULL;
 }
 
-void Entitie::addUserField(Field* f){
+void Entity::addUserField(Field* f){
 	this->myfield->push_back(f);
 }
 
-void Entitie::addIntField(int value){
+void Entity::addIntField(int value){
     this->myfield->push_back(new IntField("StandartInt",value));
 }
 
-void Entitie::addDoubleField(double value){
+void Entity::addDoubleField(double value){
     this->myfield->push_back(new DoubleField("StandartDouble",value));
 }
 
-void Entitie::addStringField(string value){
+void Entity::addStringField(string value){
     this->myfield->push_back(new StringField("StandartString",value));
 }
 
-void Entitie::addStdField(string value){
+void Entity::addStdField(string value){
     this->myfield->push_back(new Field(value));
 }
 
-void Entitie::popFieldAt(int i){
+void Entity::popFieldAt(int i){
 	delete(this->myfield->at(i));
 	this->myfield->popAt(i);
 }
 
-void Entitie::popFieldByID(string ID){
+void Entity::popFieldByID(string ID){
     bool stop = false;
     for(int i=0; i<this->myfield->size()&& stop==false; i++){
         if(this->myfield->at(i)->getID()==ID){
@@ -92,11 +92,11 @@ void Entitie::popFieldByID(string ID){
     }
 }
 
-int Entitie::fieldCount(){
+int Entity::fieldCount(){
     return this->myfield->size();
 }
 
-bool Entitie::isFieldListEmpty(){
+bool Entity::isFieldListEmpty(){
     if(this->fieldCount()>0){
         return false;
     }else{
@@ -104,11 +104,11 @@ bool Entitie::isFieldListEmpty(){
     }
 }
 
-Work* Entitie::workAt(int i){
+Work* Entity::workAt(int i){
     return this->myWork->at(i);
 }
 
-Work* Entitie::workByID(string ID){
+Work* Entity::workByID(string ID){
     for(int i=0; i<this->myWork->size(); i++){
         if(this->myWork->at(i)->getID()==ID){
             return this->myWork->at(i);
@@ -117,16 +117,16 @@ Work* Entitie::workByID(string ID){
     return NULL;
 }
 
-void Entitie::addWork(Work* r){
+void Entity::addWork(Work* r){
     this->myWork->push_back(r);
 }
 
-void Entitie::popWorkAt(int i, bool deleteWorkAfterPoping){
+void Entity::popWorkAt(int i, bool deleteWorkAfterPoping){
     this->myWork->popAt(i);
     if(deleteWorkAfterPoping){ delete(this->myWork->at(i)); }
 }
 
-void Entitie::popWorkByID(string ID, bool deleteWorkAfterPoping){
+void Entity::popWorkByID(string ID, bool deleteWorkAfterPoping){
     bool stop = false;
     for(int i=0; i<this->myWork->size() && stop==false; i++){
         if(this->myWork->at(i)->getID()==ID){
@@ -137,11 +137,11 @@ void Entitie::popWorkByID(string ID, bool deleteWorkAfterPoping){
     }
 }
 
-int Entitie::workCount(){
+int Entity::workCount(){
     return this->myWork->size();
 }
 
-bool Entitie::isWorkListEmpty(){
+bool Entity::isWorkListEmpty(){
     if(this->workCount()>0){
         return false;
     }else{
@@ -149,7 +149,7 @@ bool Entitie::isWorkListEmpty(){
     }
 }
 
-bool Entitie::isIDFree(string id){
+bool Entity::isIDFree(string id){
 	for(int i=0; i<this->myfield->size(); i++)
 	{
 		if (myfield->at(i)->getID() == id)

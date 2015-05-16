@@ -1,11 +1,11 @@
 #include "SequenceDiagram.h"
-#include "Entitie.h"
+#include "Entity.h"
 #include "Work.h"
 #include "Sequence.h"
 
 SequenceDiagram::SequenceDiagram(string ID){
     this->ID = ID;
-    this->entities = new List<Entitie*>();
+    this->entities = new List<Entity*>();
     this->works = new List<Work*>();
     this->sequences = new List<Sequence*>();
 }
@@ -39,18 +39,18 @@ int SequenceDiagram::getSequencesCount(){
 }
 
 void SequenceDiagram::addEntitie(string ID){
-    this->entities->push_back(new Entitie(ID));
+    this->entities->push_back(new Entity(ID));
 }
 
-void SequenceDiagram::addUserEntitie(Entitie *e){
+void SequenceDiagram::addUserEntitie(Entity *e){
     this->entities->push_back(e);
 }
 
-Entitie *SequenceDiagram::entitieAt(int i){
+Entity *SequenceDiagram::entitieAt(int i){
     return this->entities->at(i);
 }
 
-Entitie *SequenceDiagram::entitieById(string ID){
+Entity *SequenceDiagram::entitieById(string ID){
     for(int i = 0; i < this->entities->size(); ++i){
         if(this->entities->at(i)->getID() == ID){
             return this->entities->at(i);
@@ -61,7 +61,7 @@ Entitie *SequenceDiagram::entitieById(string ID){
 
 void SequenceDiagram::popEntitieAt(int i){
 
-    Entitie* e = this->entitieAt(i);
+    Entity* e = this->entitieAt(i);
     List<Work*>* del = new List<Work*>();
 
     for(int j = 0; j < e->workCount(); ++j){
@@ -96,7 +96,7 @@ int SequenceDiagram::getEntitieIndexByID(string ID){
     return 0;
 }
 
-void SequenceDiagram::addWork(string ID, double workTime, Entitie *to){
+void SequenceDiagram::addWork(string ID, double workTime, Entity *to){
     Work* w = new Work(ID, workTime);
     w->setEntitie(to);
     to->addWork(w);
@@ -129,9 +129,9 @@ void SequenceDiagram::popWorkByID(string ID){
     for(int i = 0; i < this->works->size(); ++i){
         if(this->works->at(i)->getID() == ID){
             Work* w = this->works->at(i);
-            w->getEntitie()->popWorkByID(w->getID());
-            this->popSequenceByID(w->getSequinceFrom());
-            this->popSequenceByID(w->getSequinceTo());
+            w->getEntitie()->popWorkByID(w->getID(), true);
+            this->popSequenceByID(w->getSequinceFrom()->getID());
+            this->popSequenceByID(w->getSequinceTo()->getID());
             delete(w);
         }
     }
@@ -146,11 +146,11 @@ int SequenceDiagram::getWorkIndexByID(string ID){
     return 0;
 }
 
-void SequenceDiagram::addSequence(Sequence* s){
+void SequenceDiagram::addUserSequence(Sequence* s){
     this->sequences->push_back(s);
 }
 
-void SequenceDiagram::addUserSequence(string ID, string name, Work *workFrom, Work *workTo){
+void SequenceDiagram::addSequence(string ID, string name, Work *workFrom, Work *workTo){
     Sequence* s = new Sequence(ID,name,workTo,workFrom);
     workTo->setSequinceTo(s);
     workFrom->setSequinceFrom(s);
