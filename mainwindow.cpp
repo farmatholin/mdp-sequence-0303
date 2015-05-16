@@ -13,6 +13,8 @@
 
 #include "UI/ui.h"
 
+#include "Entities/programmer.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -26,7 +28,15 @@ MainWindow::MainWindow(QWidget *parent) :
     scroll->setWidget(ui->widget);
     scroll->show();
 
+    this->core = new Core();
     this->interace = new UI(this->core, this->ui->widget);
+
+//    foreach (Entity *_entity, core->getAllEntities()) {
+//        ui->entitySelector->addItem(_entity->getID());
+//    }
+    for (int i = 0; i < core->getAllEntities()->size(); i++) {
+        ui->entitySelector->addItem(core->getAllEntities()->at(i)->getID().c_str());
+    }
 }
 
 MainWindow::~MainWindow()
@@ -36,40 +46,23 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_addEntityButton_clicked()
 {
-    int x = 0, y = 0;
-
-    x = entities->length() > 0 ? entities->last()->geometry().x() + UIEntity::WIDTH + 20 : 0;
-
-    UIEntity *uientity = new UIEntity(ui->widget);
-    uientity->setGeometry(x,0, UIEntity::WIDTH, UIEntity::HEIGHT);
-    uientity->setText(ui->entityNameEdit->text());
-
-    QWidget *line = new QWidget(ui->widget);
-    line->setStyleSheet("background-color:black;");
-    line->setGeometry(x + (UIEntity::WIDTH / 2), UIEntity::HEIGHT, 1, 400);
-    line->show();
-
-    ui->entitySelector->addItem(ui->entityNameEdit->text());
-
-    ui->widget->setGeometry(0, 0, x + UIEntity::WIDTH ,400);
-    uientity->show();
-
-    entities->append(uientity);
+    Programmer *p = new Programmer();
+    this->interace->addEntity(p);
 }
 
 void MainWindow::on_addTaskButton_clicked()
 {
-    int x = 0, y = 100;
+//    int x = 0, y = 100;
 
-//    foreach (UIEntity *UIEntity, entities) {
-    for (int i = 0; i < entities->length(); i++) {
-        if (entities->at(i)->getText() == ui->entitySelector->currentText()) {
-            x = entities->at(i)->geometry().x() + (UIEntity::WIDTH / 2) - 25;
-        }
-    }
+////    foreach (UIEntity *UIEntity, entities) {
+//    for (int i = 0; i < entities->length(); i++) {
+//        if (entities->at(i)->getText() == ui->entitySelector->currentText()) {
+//            x = entities->at(i)->geometry().x() + (UIEntity::WIDTH / 2) - 25;
+//        }
+//    }
 
-    QWidget *task = new QWidget(ui->widget);
-    task->setGeometry(x, y, 50, 100);
-    task->setStyleSheet("background-color:blue;");
-    task->show();
+//    QWidget *task = new QWidget(ui->widget);
+//    task->setGeometry(x, y, 50, 100);
+//    task->setStyleSheet("background-color:blue;");
+//    task->show();
 }

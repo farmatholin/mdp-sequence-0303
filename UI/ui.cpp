@@ -1,6 +1,8 @@
 #include "ui.h"
 #include "mainwindow.h"
 
+#include "UI/uientity.h"
+
 
 UI::UI(Core *core, QWidget *baseWidget)
 {
@@ -10,7 +12,10 @@ UI::UI(Core *core, QWidget *baseWidget)
 
 void UI::addEntity(Entity *entity)
 {
-//    this->core
+    this->core->addUserEntity(entity);
+
+    UIEntity *uientity = new UIEntity(this->baseWidget, entity);
+    uientity->show();
 
 }
 

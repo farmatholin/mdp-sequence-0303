@@ -3,8 +3,11 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <QList>
 #include <QMouseEvent>
 #include <QString>
+
+#include "Container/Entity.h"
 
 class UIEntity : public QWidget {
 
@@ -17,9 +20,20 @@ private:
     QString text;
 
 public:
-    UIEntity(QWidget * parent = 0, Qt::WindowFlags f = 0) : QWidget(parent, f){
+    UIEntity(QWidget * parent = 0, Entity *entity = 0) : QWidget(parent, 0){
+
+        int x = 0;
+
+        foreach (UIEntity *_entity, parent->findChildren<UIEntity*>()) {
+            x = _entity->geometry().x() > x ? _entity->geometry().x() + this->WIDTH + 10 : x;
+        }
+
+        this->setGeometry(x + 10, 0, this->WIDTH, this->HEIGHT);
+
+        parent->setGeometry(0, 0, x + this->WIDTH + 20 ,400);
+
         this->label = new QLabel(this);
-        this->label->setText("example");
+        this->label->setText(entity->getID().c_str());
         this->label->setGeometry(5, 5, this->WIDTH - 5, this->HEIGHT - 5);
 
         this->setStyleSheet("background-color:red;");
