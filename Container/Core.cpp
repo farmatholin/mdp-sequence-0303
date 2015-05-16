@@ -1,5 +1,5 @@
 #include "Core.h"
-#include "Entitie.h"
+#include "Entity.h"
 #include "IntField.h"
 #include "DoubleField.h"
 #include "StringField.h"
@@ -26,7 +26,7 @@ Core::~Core()
 /*
 void Core::saveProject(string file){
     QFile appFile(QString::fromStdString(file));
-    Entitie* e;
+    Entity* e;
     Relation* r;
     int i,j,k;
     i=0;
@@ -35,8 +35,8 @@ void Core::saveProject(string file){
         QDataStream inFile(&appFile); // передаем потоку указатель на QIODevice;
         inFile.setVersion(QDataStream::Qt_5_2);
         inFile<<QString::fromStdString("RSL.ER-диаграмма");
-        inFile<<this->content->getEntitieCount();
-        while (i<this->content->getEntitieCount()){
+        inFile<<this->content->getEntityCount();
+        while (i<this->content->getEntityCount()){
             e= this->content->entitieAt(i);
             inFile<<(QString::fromStdString(e->getID()));
             j=0;
@@ -101,7 +101,7 @@ void Core::newConten(){
     this->content = new ERDiagram("Common");
     this->state = 0;
     this->focus = -1;
-    this->focusEntitieOrRelation = true;
+    this->focusEntityOrRelation = true;
     this->counter = 0;
     this->counter0 = 0;
     this->counter1 = 0;
@@ -112,7 +112,7 @@ void Core::newConten(){
 
 bool Core::loadProject(string file){
     QString a,v,id;
-    Entitie* e;
+    Entity* e;
     int count_ent;
     int count_f;
     int count_r;
@@ -125,14 +125,14 @@ bool Core::loadProject(string file){
     bool mulL;
     bool absR;
     bool absL;
-    Entitie* EntitR;
-    Entitie* EntitL;
+    Entity* EntitR;
+    Entity* EntitL;
     int countAll;
     ClearEr();
     this->content = new ERDiagram("Common");
     this->state = 0;
     this->focus = -1;
-    this->focusEntitieOrRelation = true;
+    this->focusEntityOrRelation = true;
     this->counter = 0;
     this->counter0 = 0;
     this->counter1 = 0;
@@ -165,7 +165,7 @@ bool Core::loadProject(string file){
         t=0;
         while (t<count_ent){
             outFile>>a;
-            e= new Entitie(a.toStdString());
+            e= new Entity(a.toStdString());
             outFile>>count_f;
             j=0;
             countAll=countAll+count_f;
@@ -193,7 +193,7 @@ bool Core::loadProject(string file){
                 }
                 j++;
             }
-            this->content->addUserEntitie(e);
+            this->content->addUserEntity(e);
             t++;
         }
         k=0;

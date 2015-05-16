@@ -26,7 +26,7 @@ SequenceDiagram::~SequenceDiagram(){
     delete(this->sequences);
 }
 
-int SequenceDiagram::getEntitiesCount(){
+int SequenceDiagram::getEntitysCount(){
     return this->entities->size();
 }
 
@@ -38,11 +38,11 @@ int SequenceDiagram::getSequencesCount(){
     return this->sequences->size();
 }
 
-void SequenceDiagram::addEntitie(string ID){
+void SequenceDiagram::addEntity(string ID){
     this->entities->push_back(new Entity(ID));
 }
 
-void SequenceDiagram::addUserEntitie(Entity *e){
+void SequenceDiagram::addUserEntity(Entity *e){
     this->entities->push_back(e);
 }
 
@@ -59,7 +59,7 @@ Entity *SequenceDiagram::entitieById(string ID){
     return NULL;
 }
 
-void SequenceDiagram::popEntitieAt(int i){
+void SequenceDiagram::popEntityAt(int i){
 
     Entity* e = this->entitieAt(i);
     List<Work*>* del = new List<Work*>();
@@ -79,16 +79,16 @@ void SequenceDiagram::popEntitieAt(int i){
     this->entities->popAt(i);
 }
 
-void SequenceDiagram::popEntitieByID(string ID){
+void SequenceDiagram::popEntityByID(string ID){
     for (int i=0; i<this->entities->size(); i++){
         if(this->entities->at(i)->getID()==ID){
-            this->popEntitieAt(i);
+            this->popEntityAt(i);
         }
     }
 }
 
-int SequenceDiagram::getEntitieIndexByID(string ID){
-    for(int i = 0; i< this->getEntitiesCount(); ++i){
+int SequenceDiagram::getEntityIndexByID(string ID){
+    for(int i = 0; i< this->getEntitysCount(); ++i){
         if(this->entitieAt(i)->getID()==ID){
             return i;
         }
@@ -98,7 +98,7 @@ int SequenceDiagram::getEntitieIndexByID(string ID){
 
 void SequenceDiagram::addWork(string ID, double workTime, Entity *to){
     Work* w = new Work(ID, workTime);
-    w->setEntitie(to);
+    w->setEntity(to);
     to->addWork(w);
 
     this->works->push_back(w);
@@ -129,7 +129,7 @@ void SequenceDiagram::popWorkByID(string ID){
     for(int i = 0; i < this->works->size(); ++i){
         if(this->works->at(i)->getID() == ID){
             Work* w = this->works->at(i);
-            w->getEntitie()->popWorkByID(w->getID(), true);
+            w->getEntity()->popWorkByID(w->getID(), true);
             this->popSequenceByID(w->getSequinceFrom()->getID());
             this->popSequenceByID(w->getSequinceTo()->getID());
             delete(w);

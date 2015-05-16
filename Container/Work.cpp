@@ -22,11 +22,11 @@ void Work::setWorkTime(double workTime){
 	this->workTime = workTime;
 }
 
-void Work::setEntitie(Entity* e){
-	this->workEntitie = e;
+void Work::setEntity(Entity* e){
+	this->workEntity = e;
 }
-Entity* Work::getEntitie(){
-	return this->workEntitie;
+Entity* Work::getEntity(){
+	return this->workEntity;
 }
 
 void Work::setSequinceFrom(Sequence* from){

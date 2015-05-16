@@ -65,16 +65,16 @@ int notmain(int argc, char *argv[])
 
 	List<Entity*>* entitieList = new List<Entity*>();
 	entitieList->push_back(new Entity("123"));
-	printf("ADD Entitie %s \n", entitieList->at(0)->getID().c_str());
+	printf("ADD Entity %s \n", entitieList->at(0)->getID().c_str());
 
 	entitieList->push_back(new Entity("GAGA"));
-	printf("ADD Entitie %s \n", entitieList->at(1)->getID().c_str());
+	printf("ADD Entity %s \n", entitieList->at(1)->getID().c_str());
 
 	entitieList->push_back(new Entity("ZAZAZA"));
-	printf("ADD Entitie %s \n", entitieList->at(2)->getID().c_str());
+	printf("ADD Entity %s \n", entitieList->at(2)->getID().c_str());
 
 	entitieList->push_back(new Entity(" GR GR GR "));
-	printf("ADD Entitie %s \n", entitieList->at(3)->getID().c_str());
+	printf("ADD Entity %s \n", entitieList->at(3)->getID().c_str());
 
 	delete(entitieList);
 	printf("\n===================================================\n");
@@ -88,15 +88,15 @@ int notmain(int argc, char *argv[])
 	Sequence* startCreate = new Sequence("startWork", "1 Create Work", startProcess, createDocument);
 	Sequence* createEnd = new Sequence("endWork", "2 End Work", createDocument, endProcess);
 
-	startProcess->setEntitie(placeHoler);
+	startProcess->setEntity(placeHoler);
 	startProcess->setSequinceFrom(NULL);
 	startProcess->setSequinceTo(startCreate);
 
-	createDocument->setEntitie(pm);
+	createDocument->setEntity(pm);
 	createDocument->setSequinceFrom(startCreate);
 	createDocument->setSequinceTo(createEnd);
 
-	endProcess->setEntitie(placeHoler);
+	endProcess->setEntity(placeHoler);
 	endProcess->setSequinceFrom(createEnd);
 	endProcess->setSequinceTo(NULL);
 

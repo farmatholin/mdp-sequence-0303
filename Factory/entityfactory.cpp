@@ -1,11 +1,11 @@
-#include "entitiefactory.h"
+#include "entityfactory.h"
 #include "QString"
 #include "Container/DoubleField.h"
 #include "Container/IntField.h"
 #include "Container/Entity.h"
 
 
-Entity* EntitieFactory::createEntitie(Entitie_Types t){
+Entity* EntityFactory::createEntity(Entity_Types t){
     Entity* e = NULL;
     switch(t){
         case 0:
@@ -21,33 +21,33 @@ Entity* EntitieFactory::createEntitie(Entitie_Types t){
     return e;
 }
 
-EntitieFactory::EntitieFactory(){
+EntityFactory::EntityFactory(){
     //this->scf = new SlowCarFactory();
 }
 
-EntitieFactory::~EntitieFactory(){
+EntityFactory::~EntityFactory(){
     //delete(this->scf);
 }
 
-EntitieFactory* EntitieFactory::entitieFactory(){
+EntityFactory* EntityFactory::entitieFactory(){
     if(factory==NULL){
-        factory = new EntitieFactory();
+        factory = new EntityFactory();
     }
     return factory;
 }
 
-void EntitieFactory::DeleteFactory(){
+void EntityFactory::DeleteFactory(){
     if(factory!=NULL){
         delete(factory);
         factory=NULL;
     }
 }
 
-void EntitieFactory::setGlobalId(int id0){
+void EntityFactory::setGlobalId(int id0){
     id=id0;
     //SlowCar::setId(id);
     DeleteFactory();
 }
 
-EntitieFactory* EntitieFactory::factory = NULL;
-int EntitieFactory::id = 0;
+EntityFactory* EntityFactory::factory = NULL;
+int EntityFactory::id = 0;

@@ -23,18 +23,18 @@ public:
     ~SequenceDiagram();
 
 public:
-    int getEntitiesCount();
+    int getEntitysCount();
     int getWorksCount();
     int getSequencesCount();
 
 public:
-    void addEntitie(string ID);
-    void addUserEntitie(Entity* e);
+    void addEntity(string ID);
+    void addUserEntity(Entity* e);
     Entity* entitieAt(int i);
     Entity* entitieById(string ID);
-    void popEntitieAt(int i);
-    void popEntitieByID(string ID);
-    int getEntitieIndexByID(string ID);
+    void popEntityAt(int i);
+    void popEntityByID(string ID);
+    int getEntityIndexByID(string ID);
 
 public:
     void addWork(string ID, double workTime, Entity* to);

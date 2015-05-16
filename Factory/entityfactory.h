@@ -4,7 +4,7 @@
 
 #include "Container/Entity.h"
 
-enum Entitie_Types{
+enum Entity_Types{
     _Empty,
     _Programmer,
     _Desiner,
@@ -12,12 +12,12 @@ enum Entitie_Types{
     _ProjectManager
 };
 
-class EntitieFactory{
+class EntityFactory{
 private:
     static int id;
-    explicit EntitieFactory();
-    virtual ~EntitieFactory();
-    static EntitieFactory* factory;
+    explicit EntityFactory();
+    virtual ~EntityFactory();
+    static EntityFactory* factory;
     //===========================
     //ProgrammerFactory* pf;
     //DesignerFactory* df;
@@ -26,10 +26,10 @@ private:
     //===========================
 
 public:
-    static EntitieFactory* entitieFactory();
+    static EntityFactory* entitieFactory();
     static void setGlobalId(int id0);
     static void DeleteFactory();
-    Entity* createEntitie(Entitie_Types t);
+    Entity* createEntity(Entity_Types t);
 };
 
 #endif // ENTITIEFACTORY_H

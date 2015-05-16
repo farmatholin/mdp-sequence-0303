@@ -16,7 +16,7 @@ class Work
 private:
 	string ID;
 	double workTime;
-    Entity* workEntitie;
+    Entity* workEntity;
 	Sequence* to;
 	Sequence* from;
 	
@@ -25,8 +25,8 @@ public:
 	string getID();
 	double getWorkTime();
 	void setWorkTime(double workTime);
-    void setEntitie(Entity* e);
-    Entity* getEntitie();
+    void setEntity(Entity* e);
+    Entity* getEntity();
 	
 	void setSequinceFrom(Sequence* from);
 	Sequence* getSequinceFrom();
