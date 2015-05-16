@@ -19,11 +19,11 @@ SOURCES += main.cpp\
     Container/Entitie.cpp \
     Container/Field.cpp \
     Container/IntField.cpp \
-    Container/main.cpp \
     Container/Sequence.cpp \
     Container/SequenceDiagramm.cpp \
     Container/StringField.cpp \
-    Container/Work.cpp
+    Container/Work.cpp \
+    Container/oldmain.cpp
 
 HEADERS  += mainwindow.h \
         entity.h \

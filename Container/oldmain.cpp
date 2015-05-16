@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 #include <iostream>
 #include "List.h"
 #include "Entitie.h"
@@ -8,7 +7,7 @@
 using namespace std;
 
 
-int main(int argc, char *argv[])
+int notmain(int argc, char *argv[])
 {
 
 	// ListItem Test
@@ -111,6 +110,5 @@ int main(int argc, char *argv[])
 	delete(placeHoler);
 
 		
-	system("pause");
 	return 0;
 }

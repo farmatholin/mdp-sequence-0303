@@ -65,10 +65,10 @@ T List<T>::at(int i){
             }
             li=li->getNext();
         }
-        throw invalid_argument("Индекс за пределами списка!");
+        //throw invalid_argument("Индекс за пределами списка!");
         return 0;
     }else{
-        throw invalid_argument("Список пуст!");
+        //throw invalid_argument("Список пуст!");
         return 0;
     }
 }
