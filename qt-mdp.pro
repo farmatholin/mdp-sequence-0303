@@ -20,13 +20,13 @@ SOURCES += main.cpp\
     Container/Field.cpp \
     Container/IntField.cpp \
     Container/Sequence.cpp \
-    Container/SequenceDiagramm.cpp \
     Container/StringField.cpp \
     Container/Work.cpp \
     Container/oldmain.cpp \
     Container/Core.cpp \
     Factory/entitiefactory.cpp \
-    Factory/projectmanagerfactory.cpp
+    Factory/projectmanagerfactory.cpp \
+    Container/SequenceDiagram.cpp
 
 HEADERS  += mainwindow.h \
         entity.h \
@@ -38,10 +38,10 @@ HEADERS  += mainwindow.h \
     Container/List.h \
     Container/ListItem.h \
     Container/Sequence.h \
-    Container/SequenceDiagramm.h \
     Container/StringField.h \
     Container/Work.h \
     Container/Core.h \
     Factory/entitiefactory.h \
-    Factory/projectmanagerfactory.h
+    Factory/projectmanagerfactory.h \
+    Container/SequenceDiagram.h
 FORMS    += mainwindow.ui

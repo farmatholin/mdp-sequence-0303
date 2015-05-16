@@ -1,6 +1,6 @@
 #pragma once
-#ifndef SEQUENCEDIAGRAMM_H
-#define SEQUENCEDIAGRAMM_H
+#ifndef SEQUENCEDIAGRAM_H
+#define SEQUENCEDIAGRAM_H
 #include <string>
 
 #include "List.h"
@@ -12,20 +12,20 @@ class Entitie;
 class Sequence;
 class Work;
 
-class SequenceDiagramm{
+class SequenceDiagram{
 private:
     string ID;
 	List<Entitie*>* entities;
 	List<Sequence*>* sequences;
 	List<Work*>* works;
 public:
-    explicit SequenceDiagramm(string ID);
-	~SequenceDiagramm();
+    explicit SequenceDiagram(string ID);
+    ~SequenceDiagram();
 
 public:
-    int getEntititesCount();
+    int getEntitiesCount();
     int getWorksCount();
-    int getSequenceCount();
+    int getSequencesCount();
 
 public:
     void addEntitie(string ID);
@@ -46,8 +46,8 @@ public:
     int getWorkIndexByID(string ID);
 
 public:
-    void addSequence(string ID);
-    void addUserSequence(string ID,
+    void addUserSequence(Sequence* s);
+    void addSequence(string ID,
                          string name,
                          Work* workFrom,
                          Work* workTo);
