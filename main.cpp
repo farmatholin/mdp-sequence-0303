@@ -6,6 +6,7 @@
 #include "Container/List.h"
 #include "Container/Entity.h"
 #include "Container/Work.h"
+#include "Container/Core.h"
 
 using namespace std;
 int main(int argc, char *argv[])
@@ -78,6 +79,7 @@ int main(int argc, char *argv[])
     entitieList->push_back(new Entity(" GR GR GR "));
     printf("ADD Entity %s \n", entitieList->at(3)->getID().c_str());
 
+
     delete(entitieList);
     printf("\n===================================================\n");
 
@@ -110,6 +112,33 @@ int main(int argc, char *argv[])
     printf("\n===================================================\n");
     delete(pm);
     delete(placeHoler);
+
+    //==================================Testing Core Save
+    printf("\n=============================Core SAVE====================================\n");
+    Core* c = new Core();
+    Entity* testD = new Entity("ZAZAZA1");
+    c->addUserEntity(testD);
+    c->addUserEntity(new Entity("ZAZAZA2"));
+    c->addUserEntity(new Entity("ZAZAZA3"));
+    c->addUserEntity(new Entity("ZAZAZA4"));
+    c->addUserEntity(new Entity("ZAZAZA5"));
+    c->addUserEntity(new Entity("ZAZAZA6"));
+    c->addUserEntity(new Entity("ZAZAZA7"));
+    c->addUserEntity(new Entity("ZAZAZA8"));
+    c->addUserEntity(new Entity("ZAZAZA9"));
+    c->addUserEntity(new Entity("ZAZAZA0"));
+    c->saveProject("MDP.SE-диаграмма");
+    delete(c);
+
+    printf("\n=============================Core SAVE END====================================\n");
+    printf("\n=============================Core LOAD====================================\n");
+    c = new Core();
+    c->loadProject("MDP.SE-диаграмма");
+
+    delete(c);
+
+    printf("\n=============================Core LOAD END====================================\n");
+
     //End Testing ----------------------------------
     QApplication a(argc, argv);
     MainWindow w;

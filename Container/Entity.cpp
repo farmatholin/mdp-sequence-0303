@@ -36,14 +36,6 @@ void Entity::setID(string ID){
     this->ID = ID;
 }
 
-double Entity::getHourCost(){
-	return this->hourCost;
-}
-
-void Entity::setHourCost(double hourCost){
-	this->hourCost = hourCost;
-}
-
 Field* Entity::fieldAt(int i){
     return this->myfield->at(i);
 }

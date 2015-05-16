@@ -5,15 +5,13 @@
 #include "Container/Entity.h"
 
 
-Entity* EntityFactory::createEntity(Entity_Types t){
+Entity* EntityFactory::createEntity(int t){
     Entity* e = NULL;
     switch(t){
-        case 0:
-            e = new Entity("Сущность "+QString::number(id++).toStdString());
+        case TYPE_PROJECT_MANAGER:
+            e = this->pmf->createProjectManager();
             break;
-        case 1:
-            //e = this->scf->createCar();
-            break;
+        case TYPE_EMPTY:
         default:
             e = new Entity("Сущность "+QString::number(id++).toStdString());
     }
@@ -21,8 +19,18 @@ Entity* EntityFactory::createEntity(Entity_Types t){
     return e;
 }
 
+QMap<int, string> EntityFactory::getAvaibleEntities(){
+    QMap<int, string> map;
+    map.insert(TYPE_DESIGNER,"Дезайнер");
+    map.insert(TYPE_PROGRAMMER,"Программист");
+    map.insert(TYPE_QA,"Тестировщик");
+    map.insert(TYPE_PROJECT_MANAGER,"PM");
+
+    return map;
+}
+
 EntityFactory::EntityFactory(){
-    //this->scf = new SlowCarFactory();
+    this->pmf = new ProjectManagerFactory();
 }
 
 EntityFactory::~EntityFactory(){
@@ -45,7 +53,6 @@ void EntityFactory::DeleteFactory(){
 
 void EntityFactory::setGlobalId(int id0){
     id=id0;
-    //SlowCar::setId(id);
     DeleteFactory();
 }
 

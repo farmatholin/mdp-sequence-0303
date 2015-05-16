@@ -122,3 +122,161 @@ void Core::popSequenceByID(string ID){
 int Core::getIndexSequenceByID(string ID){
     return this->content->getIndexSequenceByID(ID);
 }
+
+bool Core::loadProject(string file){
+        QString a,v,id;
+        Entity* e;
+        int count_ent;
+        int count_f;
+        int count_r;
+        int t,j,k;
+        QString fId;
+        QString key;
+        int countAll;
+        this->clearSequenceDiagram();
+        this->content = new SequenceDiagram("Common");
+        this->state = 0;
+        this->focus = -1;
+
+        this->changed = false;
+        QFile readFile(QString::fromStdString(file));
+        readFile.open(QFile::ReadOnly);
+        QDataStream outFile(&readFile);
+        outFile.setVersion(QDataStream::Qt_5_2);
+        countAll=0;
+        QString summ_f;
+        QString summ=calcMD5(QString::fromStdString(file));
+        QFile hash(QString::fromStdString(file+".ks"));
+        if (hash.open(QIODevice::ReadOnly)){
+            QTextStream myhash(&hash);
+            myhash>>summ_f;
+            hash.close();
+        }
+        if (summ!=summ_f){
+            return false;
+        }
+        outFile>>a;
+        if (a!="MDP.SE-диаграмма"){
+            readFile.close();
+            return false;
+        }
+        while (!readFile.atEnd()){
+            outFile>>count_ent;
+            t=0;
+            while (t<count_ent){
+                outFile>>a;
+                e= new Entity(a.toStdString());
+                outFile>>count_f;
+                j=0;
+                countAll=countAll+count_f;
+                while (j<count_f){
+                    outFile>>id;
+                    outFile>>a;
+                    if (a=="BASE_T") {
+                        e->addUserField(new Field(id.toStdString()));
+                    }else{
+                        if (a=="INT_T"){
+                            int i;
+                            outFile>>i;
+                            e->addUserField(new IntField(id.toStdString(),i));
+                        }else if (a=="DOUBLE_T"){
+                            double d;
+                            outFile>>d;
+                            e->addUserField(new DoubleField(id.toStdString(),d));
+                        }else{
+                            if (a=="STRING_T"){
+                                QString s;
+                                outFile>>s;
+                                e->addUserField(new StringField(id.toStdString(),s.toStdString()));
+                            }
+                        }
+                    }
+                    j++;
+                }
+                this->content->addUserEntity(e);
+                t++;
+            }
+            k=0;
+        }
+        readFile.close();
+        return true;
+
+    }
+//Сериализация
+    void Core::saveProject(string file){
+        QFile appFile(QString::fromStdString(file));
+        Entity* e;
+        int i,j,k;
+        i=0;
+        string type;
+        if (appFile.open(QIODevice::WriteOnly)){
+            QDataStream inFile(&appFile); // передаем потоку указатель на QIODevice;
+            inFile.setVersion(QDataStream::Qt_5_2);
+            inFile<<QString::fromStdString("MDP.SE-диаграмма");
+            inFile<<this->content->getEntitiesCount();
+            while (i<this->content->getEntitiesCount()){
+                e= this->content->entitieAt(i);
+                inFile<<(QString::fromStdString(e->getID()));
+                j=0;
+                inFile<<e->fieldCount();
+                while (j<e->fieldCount()){
+                    if (BASE_FIELD == e->fieldAt(j)->getType()) {
+                        type="BASE_T";
+                        inFile<<QString::fromStdString(e->fieldAt(j)->getID());
+                        inFile<<QString::fromStdString(type);
+                    }
+                    if (INT_FIELD == e->fieldAt(j)->getType()) {
+                        type="INT_T";
+                        inFile<<QString::fromStdString(e->fieldAt(j)->getID());
+                        inFile<<QString::fromStdString(type);
+                        inFile<<(((IntField*)(e->fieldAt(j)))->getValue());
+                    }
+                    if (DOUBLE_FIELD == e->fieldAt(j)->getType()) {
+                        type="DOUBLE_T";
+                        inFile<<QString::fromStdString(e->fieldAt(j)->getID());
+                        inFile<<QString::fromStdString(type);
+                        inFile<<(((DoubleField*)(e->fieldAt(j)))->getValue());
+                    }
+                    if (STRING_FIELD == e->fieldAt(j)->getType()) {
+                        type="STRING_T";
+                        inFile<<QString::fromStdString(e->fieldAt(j)->getID());
+                        inFile<<QString::fromStdString(type);
+                        inFile<<QString::fromStdString(((StringField*)(e->fieldAt(j)))->getValue());
+                    }
+                    j++;
+                }
+                i++;
+            }
+            k=0;
+        }
+        appFile.close();
+        QString summ = calcMD5(QString::fromStdString(file));
+        QFile hash(QString::fromStdString(file+".ks"));
+        if (hash.open(QIODevice::WriteOnly)){
+            QTextStream myhash(&hash);
+            myhash<<summ;
+            hash.close();
+        }
+        //appFile.flush(); // записываем весь буффер в файл;
+        return;
+    }
+
+    void Core::clearSequenceDiagram(){
+        delete(this->content);
+    }
+
+    QString Core::calcMD5(QString fileName){
+        QString result;
+        QByteArray data;
+        QCryptographicHash cryp(QCryptographicHash::Md5);
+        QFile file(fileName);
+
+        if (file.open(QIODevice::ReadOnly) ){
+            data = file.readAll();
+            cryp.addData(data);
+            result = cryp.result().toHex().data();
+            file.close();
+        }
+
+    return result;
+    }

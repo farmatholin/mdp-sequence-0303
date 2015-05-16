@@ -6,7 +6,7 @@
 class ProjectManagerFactory{
 public:
     ProjectManagerFactory();
-    Entity* getProjectManager();
+    Entity* createProjectManager();
 };
 
 #endif // PROJECTMANAGERFACTORY_H

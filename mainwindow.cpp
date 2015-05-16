@@ -1,10 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "ui/uientity.h"
+#include "UI/uientity.h"
 #include <QRect>
 #include <QLayout>
 #include <QSizePolicy>
+#include <QMapIterator>
 
 #include <QScrollArea>
 #include <QLine>
@@ -14,6 +15,7 @@
 #include "UI/ui.h"
 
 #include "Entities/programmer.h"
+#include "Factory/entityfactory.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -34,8 +36,12 @@ MainWindow::MainWindow(QWidget *parent) :
 //    foreach (Entity *_entity, core->getAllEntities()) {
 //        ui->entitySelector->addItem(_entity->getID());
 //    }
-    for (int i = 0; i < core->getAllEntities()->size(); i++) {
-        ui->entitySelector->addItem(core->getAllEntities()->at(i)->getID().c_str());
+
+    QMapIterator<int,string> i(EntityFactory::getAvaibleEntities());
+    while (i.hasNext()) {
+        i.next();
+        QVariant qv = i.key();
+        ui->entitySelector->addItem(i.value().c_str(),(QVariant)i.key());
     }
 }
 

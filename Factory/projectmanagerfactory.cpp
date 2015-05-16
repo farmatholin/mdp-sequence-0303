@@ -5,7 +5,7 @@ ProjectManagerFactory::ProjectManagerFactory()
 {
 }
 
-Entity *ProjectManagerFactory::getProjectManager()
+Entity *ProjectManagerFactory::createProjectManager()
 {
     return new ProjectManager();
 }

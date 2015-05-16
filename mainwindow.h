@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QWidget>
-#include <ui/uientity.h> //todo: remove ?
+#include <UI/uientity.h> //todo: remove ?
 #include <QList>
 
 #include "UI/ui.h"

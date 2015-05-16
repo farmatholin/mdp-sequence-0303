@@ -19,8 +19,10 @@ private:
     int state;//навiщо?
     bool focus;
 public:
-    //void saveProject(string file);
-    //bool loadProject(string file);
+    void saveProject(string file);
+    bool loadProject(string file);
+    QString calcMD5(QString fileName);
+    void clearSequenceDiagram();
     explicit Core();
     ~Core();
 public:

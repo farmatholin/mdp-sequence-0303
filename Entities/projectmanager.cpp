@@ -5,8 +5,8 @@
 #include <QString>
 
 ProjectManager::ProjectManager():Entity("PM"+QString::number(id++).toStdString()){
-    this->setHourCost(25.5);
     this->myfield->push_back(new StringField("Tittle","PM - "+ QString::number(id).toStdString()));
+    this->myfield->push_back(new DoubleField("cost", 40));
 }
 
 ProjectManager::~ProjectManager(){

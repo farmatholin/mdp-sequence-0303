@@ -5,7 +5,6 @@
 #include <QString>
 
 Programmer::Programmer():Entity("proger"+QString::number(id++).toStdString()){
-    this->setHourCost(15.5);
     this->myfield->push_back(new StringField("Tittle","Программист - "+ QString::number(id).toStdString()));
 }
 

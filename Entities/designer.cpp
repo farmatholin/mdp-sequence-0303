@@ -5,7 +5,6 @@
 #include <QString>
 
 Designer::Designer():Entity("designer"+QString::number(id++).toStdString()){
-    this->setHourCost(12.5);
     this->myfield->push_back(new StringField("Tittle","Дизайнер - "+ QString::number(id).toStdString()));
 }
 
