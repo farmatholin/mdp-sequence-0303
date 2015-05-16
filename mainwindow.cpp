@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "uientity.h"
+#include "ui/uientity.h"
 #include <QRect>
 #include <QLayout>
 #include <QSizePolicy>
@@ -11,21 +11,22 @@
 
 #include <iostream>
 
+#include "UI/ui.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    entities = new QList<UIEntity*>();
+    ui->widget->setGeometry(0,0,100,100);
 
     QScrollArea *scroll = new QScrollArea(this);
     scroll->setBackgroundRole(QPalette::Dark);
     scroll->setGeometry(50,50, 600, 400);
-    ui->widget->setGeometry(0,0,100,100);
     scroll->setWidget(ui->widget);
     scroll->show();
 
+    this->interace = new UI(this->core, this->ui->widget);
 }
 
 MainWindow::~MainWindow()

@@ -3,9 +3,11 @@
 
 #include <QMainWindow>
 #include <QWidget>
-#include <uientity.h>
-
+#include <ui/uientity.h> #todo: remove ?
 #include <QList>
+
+#include "UI/ui.h"
+#include "Container/Core.h"
 
 namespace Ui {
 class MainWindow;
@@ -28,8 +30,10 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    QList<UIEntity *> *entities;
+    Core *core;
+    UI *interace;
 
+    QList<UIEntity *> *entities;
 };
 
 #endif // MAINWINDOW_H
