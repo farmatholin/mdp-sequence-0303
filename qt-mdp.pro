@@ -26,7 +26,14 @@ SOURCES += main.cpp\
     Container/Core.cpp \
     Factory/entitiefactory.cpp \
     Factory/projectmanagerfactory.cpp \
+<<<<<<< HEAD
     Container/SequenceDiagram.cpp
+=======
+    Entities/projectmanager.cpp \
+    Entities/programmist.cpp \
+    Entities/designer.cpp \
+    Entities/testir.cpp
+>>>>>>> 31b6c9a3211ddccb6cb98c355c2bfc444fbfa980
 
 HEADERS  += mainwindow.h \
         entity.h \
@@ -43,5 +50,12 @@ HEADERS  += mainwindow.h \
     Container/Core.h \
     Factory/entitiefactory.h \
     Factory/projectmanagerfactory.h \
+<<<<<<< HEAD
     Container/SequenceDiagram.h
+=======
+    Entities/projectmanager.h \
+    Entities/programmist.h \
+    Entities/designer.h \
+    Entities/testir.h
+>>>>>>> 31b6c9a3211ddccb6cb98c355c2bfc444fbfa980
 FORMS    += mainwindow.ui
