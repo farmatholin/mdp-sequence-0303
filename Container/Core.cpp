@@ -23,7 +23,7 @@ Core::~Core()
 {
 
 }
-
+/*
 void Core::saveProject(string file){
     QFile appFile(QString::fromStdString(file));
     Entitie* e;
@@ -219,3 +219,4 @@ bool Core::loadProject(string file){
     readFile.close();
     return true;
 }
+*/

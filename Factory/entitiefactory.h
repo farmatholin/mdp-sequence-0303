@@ -19,10 +19,10 @@ private:
     virtual ~EntitieFactory();
     static EntitieFactory* factory;
     //===========================
-    ProgrammerFactory* pf;
-    DesignerFactory* df;
-    TesterFactory* tf;
-    ProjectManagerFactory* pmf;
+    //ProgrammerFactory* pf;
+    //DesignerFactory* df;
+    //TesterFactory* tf;
+    //ProjectManagerFactory* pmf;
     //===========================
 
 public:

@@ -1,6 +1,6 @@
 #include "SequenceDiagramm.h"
 
-SequenceDiagramm::SequenceDiagramm()
+SequenceDiagramm::SequenceDiagramm(string ID)
 {
 }
 

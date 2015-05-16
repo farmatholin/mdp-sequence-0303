@@ -1,4 +1,5 @@
 #include "entitiefactory.h"
+#include "QString"
 #include "Container/DoubleField.h"
 #include "Container/IntField.h"
 #include "Container/Entitie.h"
