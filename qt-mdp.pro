@@ -24,8 +24,12 @@ SOURCES += main.cpp\
     Container/StringField.cpp \
     Container/Work.cpp \
     Container/oldmain.cpp \
+<<<<<<< HEAD
     Factory/entitiefactory.cpp \
     Factory/projectmanagerfactory.cpp
+=======
+    Container/Core.cpp
+>>>>>>> e27c0f9952aebf9eb8253b37409b992cd3361cfe
 
 HEADERS  += mainwindow.h \
         entity.h \
@@ -40,7 +44,11 @@ HEADERS  += mainwindow.h \
     Container/SequenceDiagramm.h \
     Container/StringField.h \
     Container/Work.h \
+<<<<<<< HEAD
     Factory/entitiefactory.h \
     Factory/projectmanagerfactory.h
+=======
+    Container/Core.h
+>>>>>>> e27c0f9952aebf9eb8253b37409b992cd3361cfe
 
 FORMS    += mainwindow.ui
