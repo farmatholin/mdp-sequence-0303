@@ -26,7 +26,7 @@ SequenceDiagram::~SequenceDiagram(){
     delete(this->sequences);
 }
 
-int SequenceDiagram::getEntitysCount(){
+int SequenceDiagram::getEntitiesCount(){
     return this->entities->size();
 }
 
@@ -36,6 +36,10 @@ int SequenceDiagram::getWorksCount(){
 
 int SequenceDiagram::getSequencesCount(){
     return this->sequences->size();
+}
+
+List<Entity*>* SequenceDiagram::getAllEntities(){
+    return this->entities;
 }
 
 void SequenceDiagram::addEntity(string ID){
@@ -88,7 +92,7 @@ void SequenceDiagram::popEntityByID(string ID){
 }
 
 int SequenceDiagram::getEntityIndexByID(string ID){
-    for(int i = 0; i< this->getEntitysCount(); ++i){
+    for(int i = 0; i< this->entities->size(); ++i){
         if(this->entitieAt(i)->getID()==ID){
             return i;
         }

@@ -1,15 +1,15 @@
-#ifndef TESTIR_H
-#define TESTIR_H
+#ifndef QA_H
+#define QA_H
 #include "Container/Entity.h"
 
 class Entity;
-class Testir : public Entity{
+class QA : public Entity{
 private:
     static int id;
 public:
     static void setId(int id0);
-    Testir();
-    ~Testir();
+    QA();
+    ~QA();
 };
 
-#endif // TESTIR_H
+#endif
