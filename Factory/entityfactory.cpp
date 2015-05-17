@@ -19,6 +19,7 @@ Entity* EntityFactory::createEntity(int t){
             break;
         case TYPE_QA:
             e = this->qf->createQA();
+            break;
         case TYPE_EMPTY:
         default:
             e = new Entity("Сущность "+QString::number(id++).toStdString());

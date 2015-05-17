@@ -124,6 +124,7 @@ int Core::getIndexSequenceByID(string ID){
 }
 
 string Core::createReview(){
+
     return "AZAZA MALINU EL";
 }
 
