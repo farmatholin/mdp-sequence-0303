@@ -11,6 +11,14 @@ Entity* EntityFactory::createEntity(int t){
         case TYPE_PROJECT_MANAGER:
             e = this->pmf->createProjectManager();
             break;
+        case TYPE_PROGRAMMER:
+            e = this->pf->createProgrammer();
+            break;
+        case TYPE_DESIGNER:
+            e = this->df->createDesigner();
+            break;
+        case TYPE_QA:
+            e = this->qf->createQA();
         case TYPE_EMPTY:
         default:
             e = new Entity("Сущность "+QString::number(id++).toStdString());
@@ -31,13 +39,16 @@ QMap<int, string> EntityFactory::getAvaibleEntities(){
 
 EntityFactory::EntityFactory(){
     this->pmf = new ProjectManagerFactory();
+    this->pf = new ProgrammerFactory();
+    this->df = new DesignerFactory();
+    this->qf = new QAFactory();
 }
 
 EntityFactory::~EntityFactory(){
     //delete(this->scf);
 }
 
-EntityFactory* EntityFactory::entitieFactory(){
+EntityFactory* EntityFactory::entityFactory(){
     if(factory==NULL){
         factory = new EntityFactory();
     }

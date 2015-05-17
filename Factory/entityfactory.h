@@ -4,6 +4,9 @@
 
 #include "Container/Entity.h"
 #include "projectmanagerfactory.h"
+#include "programmerfactory.h"
+#include "designerfactory.h"
+#include "qafactory.h"
 #include "QMap"
 
 enum{
@@ -21,14 +24,14 @@ private:
     virtual ~EntityFactory();
     static EntityFactory* factory;
     //===========================
-    //ProgrammerFactory* pf;
-    //DesignerFactory* df;
-    //TesterFactory* tf;
+    ProgrammerFactory* pf;
+    DesignerFactory* df;
+    QAFactory* qf;
     ProjectManagerFactory* pmf;
     //===========================
 
 public:
-    static EntityFactory* entitieFactory();
+    static EntityFactory* entityFactory();
     static void setGlobalId(int id0);
     static void DeleteFactory();
     Entity* createEntity(int t);

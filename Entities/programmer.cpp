@@ -5,7 +5,8 @@
 #include <QString>
 
 Programmer::Programmer():Entity("proger"+QString::number(id++).toStdString()){
-    this->myfield->push_back(new StringField("Tittle","Программист - "+ QString::number(id).toStdString()));
+    this->myfield->push_back(new StringField("title","Программист - "+ QString::number(id).toStdString()));
+    this->myfield->push_back(new DoubleField("cost",25.0));
 }
 
 Programmer::~Programmer()

@@ -31,7 +31,10 @@ SOURCES += main.cpp\
     UI/ui.cpp \
     Factory/entityfactory.cpp \
     Entities/programmer.cpp \
-    Entities/qa.cpp
+    Entities/qa.cpp \
+    Factory/programmerfactory.cpp \
+    Factory/designerfactory.cpp \
+    Factory/qafactory.cpp
 
 HEADERS  += mainwindow.h \
     Container/DataField.h \
@@ -53,5 +56,8 @@ HEADERS  += mainwindow.h \
     UI/ui.h \
     Factory/entityfactory.h \
     Entities/programmer.h \
-    Entities/qa.h
+    Entities/qa.h \
+    Factory/programmerfactory.h \
+    Factory/designerfactory.h \
+    Factory/qafactory.h
 FORMS    += mainwindow.ui

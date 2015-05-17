@@ -7,6 +7,7 @@
 #include "Container/Entity.h"
 #include "Container/Work.h"
 #include "Container/Core.h"
+#include "Factory/entityfactory.h"
 
 using namespace std;
 int main(int argc, char *argv[])
@@ -115,10 +116,11 @@ int main(int argc, char *argv[])
 
     //==================================Testing Core Save
     printf("\n=============================Core SAVE====================================\n");
+    EntityFactory* ef = EntityFactory::entityFactory();
+    Entity* designer = ef->createEntity(TYPE_DESIGNER);
     Core* c = new Core();
-    Entity* testD = new Entity("ZAZAZA1");
-    c->addUserEntity(testD);
-    c->addWork("aaa",20.5,testD);
+    c->addUserEntity(designer);
+    c->addWork("Make babushka",20.5,designer);
     c->addUserEntity(new Entity("ZAZAZA2"));
     c->addUserEntity(new Entity("ZAZAZA3"));
     c->addUserEntity(new Entity("ZAZAZA4"));
