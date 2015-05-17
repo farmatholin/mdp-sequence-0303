@@ -3,8 +3,10 @@
 #define WORK_H
 //=====================================================
 #include <string>
+#include <iostream>
 #include "List.h"
 #include "Sequence.h"
+
 //=====================================================
 using namespace std;
 
@@ -33,6 +35,12 @@ public:
 
 	void setSequinceTo(Sequence* to);
 	Sequence* getSequinceTo();
+
+    ostream & operator<< (ostream &os) {
+        os << "a";
+        cout << "aaa";
+        return os;
+    }
 
 	explicit Work(string ID, double workTime);
 	~Work();

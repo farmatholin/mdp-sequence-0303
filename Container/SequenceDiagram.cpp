@@ -7,6 +7,7 @@ SequenceDiagram::SequenceDiagram(string ID){
     this->ID = ID;
     this->entities = new List<Entity*>();
     this->works = new List<Work*>();
+    this->works = new List<Work*>();
     this->sequences = new List<Sequence*>();
 }
 

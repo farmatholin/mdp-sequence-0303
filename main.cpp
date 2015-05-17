@@ -117,7 +117,10 @@ int main(int argc, char *argv[])
     printf("\n=============================Core SAVE====================================\n");
     Core* c = new Core();
     Entity* testD = new Entity("ZAZAZA1");
+    Work* wwww = new Work("1awd",20.2);
     c->addUserEntity(testD);
+    c->addUserWork(wwww);
+    /*c->addUserEntity(testD);
     c->addUserEntity(new Entity("ZAZAZA2"));
     c->addUserEntity(new Entity("ZAZAZA3"));
     c->addUserEntity(new Entity("ZAZAZA4"));
@@ -133,7 +136,7 @@ int main(int argc, char *argv[])
     printf("\n=============================Core SAVE END====================================\n");
     printf("\n=============================Core LOAD====================================\n");
     c = new Core();
-    c->loadProject("MDP.SE-диаграмма");
+    c->loadProject("MDP.SE-диаграмма");*/
 
     delete(c);
 

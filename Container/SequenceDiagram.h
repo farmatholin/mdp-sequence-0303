@@ -6,6 +6,7 @@
 #include "List.h"
 #include "Entity.h"
 #include "Sequence.h"
+#include "Work.h"
 
 
 class Entity;
@@ -16,8 +17,9 @@ class SequenceDiagram{
 private:
     string ID;
     List<Entity*>* entities;
+    List<Work*>* works;
 	List<Sequence*>* sequences;
-	List<Work*>* works;
+
 public:
     explicit SequenceDiagram(string ID);
     ~SequenceDiagram();

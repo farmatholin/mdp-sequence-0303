@@ -68,7 +68,7 @@ int Core::getEntityIndexByID(string ID){
 }
 
 void Core::addWork(string ID, double workTime, Entity *to){
-   this->content->addWork(ID,workTime, to);
+   this->content->addWork(ID, workTime, to);
 }
 
 void Core::addUserWork(Work *work){
@@ -126,6 +126,8 @@ int Core::getIndexSequenceByID(string ID){
 bool Core::loadProject(string file){
         QString a,v,id;
         Entity* e;
+        Work* w;
+        Sequence* s;
         int count_ent;
         int count_f;
         int count_r;
@@ -206,6 +208,8 @@ bool Core::loadProject(string file){
     void Core::saveProject(string file){
         QFile appFile(QString::fromStdString(file));
         Entity* e;
+        Work* w;
+        Sequence* s;
         int i,j,k;
         i=0;
         string type;
@@ -248,6 +252,12 @@ bool Core::loadProject(string file){
                 i++;
             }
             k=0;
+            i=0;
+            while (i<this->content->getWorksCount()){
+                w= this->content->getWorkAt(i);
+                inFile<< w;
+                i++;
+            }
         }
         appFile.close();
         QString summ = calcMD5(QString::fromStdString(file));

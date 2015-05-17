@@ -3,6 +3,7 @@
 Work::Work(string ID, double workTime){
 	this->ID = ID;
 	this->workTime = workTime;
+    this->workEntity = NULL;
 }
 
 Work::~Work(){
