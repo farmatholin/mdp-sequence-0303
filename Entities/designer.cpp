@@ -5,7 +5,7 @@
 #include <QString>
 
 Designer::Designer():Entity("designer"+QString::number(id++).toStdString()){
-    this->myfield->push_back(new StringField("Tittle","Дизайнер - "+ QString::number(id).toStdString()));
+    this->myfield->push_back(new StringField("title","Дизайнер - "+ QString::number(id).toStdString()));
     this->myfield->push_back(new DoubleField("cost",30.4));
 }
 
