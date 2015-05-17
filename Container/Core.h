@@ -60,6 +60,9 @@ public:
     void popSequenceAt(int i);
     void popSequenceByID(string ID);
     int getIndexSequenceByID(string ID);
+
+public:
+    string createReview();
 };
 
 #endif // CORE_H

@@ -123,6 +123,10 @@ int Core::getIndexSequenceByID(string ID){
     return this->content->getIndexSequenceByID(ID);
 }
 
+string Core::createReview(){
+    return "AZAZA MALINU EL";
+}
+
 bool Core::loadProject(string file){
         QString a,v,id;
         Entity* e;
