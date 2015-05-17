@@ -21,7 +21,7 @@ Entity* EntityFactory::createEntity(int t){
 
 QMap<int, string> EntityFactory::getAvaibleEntities(){
     QMap<int, string> map;
-    map.insert(TYPE_DESIGNER,"Дезайнер");
+    map.insert(TYPE_DESIGNER,"Дизайнер");
     map.insert(TYPE_PROGRAMMER,"Программист");
     map.insert(TYPE_QA,"Тестировщик");
     map.insert(TYPE_PROJECT_MANAGER,"PM");

@@ -129,8 +129,9 @@ bool Core::loadProject(string file){
         Work* w;
         Sequence* s;
         int count_ent;
+        int count_work;
+        int count_s;
         int count_f;
-        int count_r;
         int t,j,k;
         QString fId;
         QString key;
@@ -199,6 +200,34 @@ bool Core::loadProject(string file){
                 t++;
             }
             k=0;
+            outFile>>count_work;
+            while(k<count_work){
+                QString ID;
+                double workTime;
+                QString entityID;
+                outFile>>ID;
+                outFile>>workTime;
+                outFile>>entityID;
+                Entity* we = this->content->entitieById(entityID.toStdString());
+                this->addWork(ID.toStdString(), workTime, we);
+                k++;
+            }
+            k=0;
+            outFile>>count_s;
+            while(k<count_s){
+                QString ID;
+                QString title;
+                QString workTo;
+                QString workFrom;
+                outFile>>ID;
+                outFile>>title;
+                outFile>>workTo;
+                outFile>>workFrom;
+                Work* wt = this->content->getWorkByID(workTo.toStdString());
+                Work* wf = this->content->getWorkByID(workFrom.toStdString());
+                this->content->addSequence(ID.toStdString(),title.toStdString(),wf,wt);
+                k++;
+            }
         }
         readFile.close();
         return true;
@@ -253,9 +282,22 @@ bool Core::loadProject(string file){
             }
             k=0;
             i=0;
+            inFile<<this->content->getWorksCount();
             while (i<this->content->getWorksCount()){
                 w= this->content->getWorkAt(i);
-                inFile<< w;
+                inFile<<(QString::fromStdString(w->getID()));
+                inFile<<(w->getWorkTime());
+                inFile<<(QString::fromStdString(w->getEntity()->getID()));
+                i++;
+            }
+            i=0;
+            inFile<<this->content->getSequencesCount();
+            while (i<this->content->getSequencesCount()){
+                s= this->content->sequenceAt(i);
+                inFile<<(QString::fromStdString(s->getID()));
+                inFile<<(QString::fromStdString(s->getSequenceName()));
+                inFile<<(QString::fromStdString(s->getWorkFrom()->getID()));
+                inFile<<(QString::fromStdString(s->getWorkTo()->getID()));
                 i++;
             }
         }

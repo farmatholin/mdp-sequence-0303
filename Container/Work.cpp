@@ -7,12 +7,16 @@ Work::Work(string ID, double workTime){
 }
 
 Work::~Work(){
-	delete(to);
+    //delete(to);
 	//delete(from);
 }
 
 string Work::getID(){
-	return this->ID;
+    return this->ID;
+}
+
+double Work::getWorkTime(){
+    return this->workTime;
 }
 
 void Work::setID(string ID){

@@ -20,8 +20,8 @@ Entity::~Entity(){
         delete(myfield->at(i));
     }
 	for (int i = 0; i < this->myWork ->size(); i++){
-        delete(this->myWork->at(i));
-        this->myWork->popAt(i);
+        //delete(this->myWork->at(i));
+        //this->myWork->popAt(i);
 
     }
     delete(myfield);
