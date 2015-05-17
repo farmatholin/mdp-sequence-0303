@@ -41,7 +41,7 @@ public:
     int getEntityIndexByID(string ID);
 
 public:
-    void addWork(string ID, double workTime, Entity* to);
+    void addWork(string ID, double workTime, string workTitle, Entity* to);
     void addUserWork(Work* work);
     Work* getWorkAt(int i);
     Work* getWorkByID(string ID);
@@ -63,6 +63,7 @@ public:
 
 public:
     string createReview();
+    string doubleToString(double val);
 };
 
 #endif // CORE_H

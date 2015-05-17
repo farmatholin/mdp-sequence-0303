@@ -4,6 +4,8 @@
 #include "DoubleField.h"
 #include "StringField.h"
 #include "qmath.h"
+#include <ostream>
+#include <sstream>
 #include <QFile>
 #include <QString>
 #include <QDataStream>
@@ -67,8 +69,8 @@ int Core::getEntityIndexByID(string ID){
     return this->content->getEntityIndexByID(ID);
 }
 
-void Core::addWork(string ID, double workTime, Entity *to){
-   this->content->addWork(ID, workTime, to);
+void Core::addWork(string ID, double workTime, string workTitle, Entity *to){
+   this->content->addWork(ID, workTime, workTitle, to);
 }
 
 void Core::addUserWork(Work *work){
@@ -123,9 +125,56 @@ int Core::getIndexSequenceByID(string ID){
     return this->content->getIndexSequenceByID(ID);
 }
 
-string Core::createReview(){
+string Core::doubleToString(double val){
+    ostringstream ost;
+    ost << val;
+    return ost.str();
+}
 
-    return "AZAZA MALINU EL";
+string Core::createReview(){
+    string review = "";
+    if(this->getEntitiesCount() == 0)
+    {
+        return "Нет работников";
+    }
+    for(int i=0;i<this->getEntitiesCount();++i){
+        review +="Работник " +((StringField*)this->entitieAt(i)->fieldByID("title"))->getValue() + "\n";
+        review += "Стоимость работы "+  this->doubleToString(((DoubleField*)this->entitieAt(i)->fieldByID("cost"))->getValue()) + "\n";
+    }
+    if(this->getWorksCount() == 0){
+        return review += "\n Нету работ \n";
+    }
+    double fullCost = 0;
+    for(int i=0;i<this->getEntitiesCount();++i){
+        Entity* e = this->entitieAt(i);
+        review +="Работник " +((StringField*)e->fieldByID("title"))->getValue() + "\n";
+        review += "Работа(ты):\n";
+        if(e->workCount() == 0){
+            review += "Нету работы\n";
+        }else {
+            double workCost = ((DoubleField*)e->fieldByID("cost"))->getValue();
+            double getForAllWorks = 0;
+            for(int j = 0; j< e->workCount(); ++j){
+                Work* w = e->workAt(j);
+                review += w->getWorkTitle() +"\n";
+                review += "Время "+ this->doubleToString(w->getWorkTime())+ "ч ";
+                review += "Стоимость "+ this->doubleToString(workCost) +"\n";
+                review += "Стоимость исполнения: " + this->doubleToString(workCost*w->getWorkTime())+"\n";
+                getForAllWorks += workCost*w->getWorkTime();
+            }
+            review += ((StringField*)e->fieldByID("title"))->getValue() + " получит: "+this->doubleToString(getForAllWorks)+"\n";
+            fullCost += getForAllWorks;
+        }
+
+    }
+    review += "Общая сумма исполнения = " +this->doubleToString(fullCost)+ "\n";
+    double fullWorkTime = 0;
+    for(int i = 0; i<this->getWorksCount();++i){
+        fullWorkTime += this->getWorkAt(i)->getWorkTime();
+    }
+    review += "Время полного выполнения "+ this->doubleToString(fullWorkTime)+"ч.\n";
+    review += "Среднее время выполнения работы "+ this->doubleToString(fullWorkTime/getWorksCount())+"ч.\n";
+    return review;
 }
 
 bool Core::loadProject(string file){
@@ -209,12 +258,14 @@ bool Core::loadProject(string file){
             while(k<count_work){
                 QString ID;
                 double workTime;
+                QString workTitle;
                 QString entityID;
                 outFile>>ID;
                 outFile>>workTime;
+                outFile>>workTitle;
                 outFile>>entityID;
                 Entity* we = this->content->entitieById(entityID.toStdString());
-                this->addWork(ID.toStdString(), workTime, we);
+                this->addWork(ID.toStdString(), workTime, workTitle.toStdString(), we);
                 k++;
             }
             k=0;
@@ -292,6 +343,7 @@ bool Core::loadProject(string file){
                 w= this->content->getWorkAt(i);
                 inFile<<(QString::fromStdString(w->getID()));
                 inFile<<(w->getWorkTime());
+                inFile<<(QString::fromStdString(w->getWorkTitle()));
                 inFile<<(QString::fromStdString(w->getEntity()->getID()));
                 i++;
             }

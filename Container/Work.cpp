@@ -1,8 +1,9 @@
 #include "Work.h"
 
-Work::Work(string ID, double workTime){
+Work::Work(string ID, double workTime, string workTitle){
 	this->ID = ID;
 	this->workTime = workTime;
+    this->workTitle = workTitle;
     this->workEntity = NULL;
 }
 
@@ -17,6 +18,14 @@ string Work::getID(){
 
 double Work::getWorkTime(){
     return this->workTime;
+}
+
+string Work::getWorkTitle(){
+    return this->workTitle;
+}
+
+void Work::setWorkTitle(string workTitle){
+    this->workTitle = workTitle;
 }
 
 void Work::setID(string ID){
