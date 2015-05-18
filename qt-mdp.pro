@@ -35,7 +35,8 @@ SOURCES += main.cpp\
     Factory/designerfactory.cpp \
     Factory/qafactory.cpp \
     UI/function.cpp \
-    UI/uiwork.cpp
+    UI/uiwork.cpp \
+    UI/uisequence.cpp
 
 HEADERS  += mainwindow.h \
     Container/DataField.h \
@@ -62,5 +63,6 @@ HEADERS  += mainwindow.h \
     Factory/designerfactory.h \
     Factory/qafactory.h \
     UI/function.h \
-    UI/uiwork.h
+    UI/uiwork.h \
+    UI/uisequence.h
 FORMS    += mainwindow.ui
