@@ -101,8 +101,8 @@ int SequenceDiagram::getEntityIndexByID(string ID){
     return 0;
 }
 
-void SequenceDiagram::addWork(string ID, double workTime, Entity *to){
-    Work* w = new Work(ID, workTime);
+void SequenceDiagram::addWork(string ID, double workTime, string workTitle, Entity *to){
+    Work* w = new Work(ID, workTime, workTitle);
     w->setEntity(to);
     to->addWork(w);
 

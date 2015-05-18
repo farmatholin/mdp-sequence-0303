@@ -20,7 +20,6 @@ SOURCES += main.cpp\
     Container/Sequence.cpp \
     Container/StringField.cpp \
     Container/Work.cpp \
-    Container/oldmain.cpp \
     Container/Core.cpp \
     Factory/projectmanagerfactory.cpp \
     Container/SequenceDiagram.cpp \

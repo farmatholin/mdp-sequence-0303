@@ -19,17 +19,30 @@ int main(int argc, char *argv[])
     Core* c = new Core();
     Entity* pm = ef->createEntity(TYPE_PROJECT_MANAGER);
     Entity* pr = ef->createEntity(TYPE_PROGRAMMER);
+    Entity* qa = ef->createEntity(TYPE_QA);
     c->addUserEntity(pm);
     c->addUserEntity(pr);
-    c->addWork("StartProject",0,pm);
-    c->addWork("Programming",40,pr);
-    c->addSequence("Create","Работать",
+    c->addUserEntity(qa);
+    c->addWork("StartProject",20, "Разработка",pm);
+    c->addWork("Programming",40,"Программирование",pr);
+    c->addWork("CheckResults",2,"Доработка",pr);
+    c->addWork("Testing",20,"Тестирование",qa);
+    c->addSequence("Create","Дать задачу",
                    c->getWorkByID("StartProject"),
                    c->getWorkByID("Programming"));
+    c->addSequence("Testing", "Отдать на тестирование",
+                    c->getWorkByID("Programming"),
+                    c->getWorkByID("Testing"));
+    c->addSequence("ReadyTesting","Отдать результат Тестирования",
+                   c->getWorkByID("Testing"),
+                   c->getWorkByID("CheckResults"));
     c->addSequence("Ready","Отдать результат",
-                   c->getWorkByID("Programming"),
+                   c->getWorkByID("CheckResults"),
                    c->getWorkByID("StartProject"));
+    string review = c->createReview();
+    cout << review;
     c->saveProject("MDP.SE-диаграмма");
+
     delete(c);
 
     printf("\n=============================Core SAVE END====================================\n");
