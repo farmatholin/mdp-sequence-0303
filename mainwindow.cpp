@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QScrollArea *scroll = new QScrollArea(this);
     scroll->setBackgroundRole(QPalette::Dark);
-    scroll->setGeometry(50,50, 600, 400);
+    scroll->setGeometry(50,50, 750, 500);
     scroll->setWidget(ui->widget);
     scroll->show();
 
@@ -198,7 +198,7 @@ void MainWindow::on_saveButton_clicked()
 
 void MainWindow::on_loadButton_clicked()
 {
-    string filename = QFileDialog::getOpenFileName(ui->widget, "Сохранение файла", "~", tr("Sequence diagram (*)")).toStdString();
+    string filename = QFileDialog::getOpenFileName(ui->widget, "Загрузка файла", "~", tr("Sequence diagram (*)")).toStdString();
     this->core->loadProject(filename);
 
     List <Entity *> *entities = this->core->getAllEntities();
