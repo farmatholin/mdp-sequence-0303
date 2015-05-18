@@ -43,7 +43,6 @@ public:
     Work();
 	~Work();
 
-
 };
 template <typename Stream>
 Stream & operator>>(Stream &os, Work* w) {
