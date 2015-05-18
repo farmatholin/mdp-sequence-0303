@@ -81,15 +81,20 @@ void MainWindow::on_addEntityButton_clicked()
 
 void MainWindow::on_addTaskButton_clicked()
 {
-    Entity *toEntity = this->core->entitieById(ui->fromEntitySelector->currentData().toString().toStdString());
-    Entity *fromEntity = this->core->entitieById(ui->toEntitySelector->currentData().toString().toStdString());
+    double time;
 
-    if (toEntity == fromEntity) {
-        (new QMessageBox(QMessageBox::Warning, "Ошибка", "Назначить задачу на самого себя нельзя!"))->exec();
+    if (0 == ui->workTimeEdit->text().length() || !(time = ui->workTimeEdit->text().toDouble())) {
+        (new QMessageBox(QMessageBox::Warning, "Ошибка ввода", "Некорректные данные\n(поле \"Продолжительность разработки\")"))->exec();
         return;
     }
 
 
+    Entity* entity = this->core->entitieById(ui->toEntitySelector->currentData().toString().toStdString());
+    string name = ((StringField *) entity->fieldByID("title"))->getValue().c_str();
+
+    Work *work = new Work(name + QString(rand() % 10000).toStdString(), time, ui->workNameEdit->text().toStdString());
+
+    this->interace->addWork(work, entity);
 }
 
 void MainWindow::on_updateEntityButton_clicked()
@@ -122,9 +127,53 @@ void MainWindow::on_deleteEntityButton_clicked()
 
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
+    ui->toEntitySelector->clear();
+    ui->toWorkSelector->clear();
+    ui->fromWorkSelector->clear();
+
     List<Entity*> *entities = this->core->getAllEntities();
     for (int i = 0; i < entities->size(); i++) {
-        ui->fromEntitySelector->addItem(((StringField* )entities->at(i)->fieldByID("title"))->getValue().c_str(), (QVariant) entities->at(i)->getID().c_str());
         ui->toEntitySelector->addItem(((StringField* )entities->at(i)->fieldByID("title"))->getValue().c_str(), (QVariant) entities->at(i)->getID().c_str());
     }
+
+    List<Work *> *works = this->core->getAllWorks();
+    for (int i = 0; i < works->size(); i++) {
+        ui->toWorkSelector->addItem(works->at(i)->getWorkTitle().c_str(), (QVariant) works->at(i)->getID().c_str());
+        ui->fromWorkSelector->addItem(works->at(i)->getWorkTitle().c_str(), (QVariant) works->at(i)->getID().c_str());
+    }
+
+}
+
+void MainWindow::on_addSequenceButon_clicked()
+{
+    Work *fromWork = this->core->getWorkByID(ui->fromWorkSelector->currentData().toString().toStdString());
+    Work *toWork = this->core->getWorkByID(ui->toWorkSelector->currentData().toString().toStdString());
+
+    UIWork *fromUIWork, *toUIWork;
+
+    QList <UIWork *> works = ui->widget->findChildren<UIWork *>();
+    for (int i = 0; i < works.count(); i++) {
+
+        if (works.at(i)->toolTip() == "uiwork") {
+
+            if (works.at(i)->getWork() == toWork) {
+                toUIWork = works.at(i);
+            }
+
+            if (works.at(i)->getWork() == fromWork) {
+                fromUIWork = works.at(i);
+            }
+        }
+    }
+
+    QWidget *widget = new QWidget(ui->widget);
+
+    if (fromUIWork->geometry().x() < toUIWork->geometry().x()) {
+        widget->setGeometry(fromUIWork->geometry().x() + UIWork::WIDTH , fromUIWork->geometry().y() + (UIWork::HEIGHT / 2), toUIWork->geometry().x() - fromUIWork->geometry().x() - (UIWork::WIDTH / 2), 2);
+    } else {
+        widget->setGeometry(toUIWork->geometry().x(), fromUIWork->geometry().y() + (UIWork::HEIGHT / 2), fromUIWork->geometry().x() - toUIWork->geometry().x(), 2);
+    }
+
+    widget->setStyleSheet("background-color: black;");
+    widget->show();
 }

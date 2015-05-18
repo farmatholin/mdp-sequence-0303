@@ -33,6 +33,8 @@ private slots:
 
     void on_tabWidget_currentChanged(int index);
 
+    void on_addSequenceButon_clicked();
+
 private:
     Ui::MainWindow *ui;
 

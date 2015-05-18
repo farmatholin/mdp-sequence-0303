@@ -19,7 +19,7 @@ public:
     ~UI();
 
     void addEntity(Entity *entity);
-    void addWork(Work *work, Entity *fromEntity, Entity *toEntity);
+    void addWork(Work *work, Entity *toEntity);
 
     void enable();
     void disable();

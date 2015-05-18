@@ -22,11 +22,11 @@ void UI::addEntity(Entity *entity)
 
 }
 
-void UI::addWork(Work *work, Entity *fromEntity, Entity *toEntity)
+void UI::addWork(Work *work, Entity *toEntity)
 {
-    this->core->add
+    this->core->addUserWork(work);
 
-    UIEntity *fromUIEntity, *toUIEntity;
+    UIEntity *toUIEntity;
 
     QList <UIEntity *> entities = this->baseWidget->findChildren<UIEntity *>();
     for (int i = 0; i < entities.count(); i++) {
@@ -36,14 +36,10 @@ void UI::addWork(Work *work, Entity *fromEntity, Entity *toEntity)
             if (entities.at(i)->getEntity() == toEntity) {
                 toUIEntity = entities.at(i);
             }
-
-            if (entities.at(i)->getEntity() == fromEntity) {
-                fromUIEntity = entities.at(i);
-            }
         }
     }
 
-    (new UIWork(this->baseWidget, work, fromUIEntity, toUIEntity))->show();
+    (new UIWork(this->baseWidget, work, toUIEntity))->show();
 
 }
 
