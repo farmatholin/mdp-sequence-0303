@@ -5,11 +5,12 @@
 
 #include "Container/Core.h"
 #include "Container/Entity.h"
+#include "Container/Work.h"
 
 class UI
 {
 private:
-//    MainWindow *ui;
+//    MainWindow ui;
     Core *core;
     QWidget *baseWidget;
 
@@ -18,11 +19,17 @@ public:
     ~UI();
 
     void addEntity(Entity *entity);
+    void addWork(Work *work, Entity *fromEntity, Entity *toEntity);
+
+    void enable();
+    void disable();
 
     void drawEntites();
     void drawWorks();
 
     void reDrawAll();
+
+//    void static editEntity(UIEntity *entity);
 };
 
 #endif // UI_H

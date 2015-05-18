@@ -27,6 +27,12 @@ private slots:
 
     void on_addTaskButton_clicked();
 
+    void on_updateEntityButton_clicked();
+
+    void on_deleteEntityButton_clicked();
+
+    void on_tabWidget_currentChanged(int index);
+
 private:
     Ui::MainWindow *ui;
 
