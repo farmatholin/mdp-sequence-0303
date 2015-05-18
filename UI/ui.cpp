@@ -24,7 +24,7 @@ void UI::addEntity(Entity *entity)
 
 void UI::addWork(Work *work, Entity *fromEntity, Entity *toEntity)
 {
-    this->core->add
+    //this->core->add
 
     UIEntity *fromUIEntity, *toUIEntity;
 
