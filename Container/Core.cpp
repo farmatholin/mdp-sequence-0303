@@ -41,6 +41,14 @@ List<Entity*>* Core::getAllEntities(){
     return this->content->getAllEntities();
 }
 
+List<Work *> *Core::getAllWorks(){
+    return this->content->getAllWorks();
+}
+
+List<Sequence *> *Core::getAllSequences(){
+    return this->content->getAllSequences();
+}
+
 void Core::addEntity(string ID){
     this->content->addEntity(ID);
 }
@@ -256,16 +264,13 @@ bool Core::loadProject(string file){
             k=0;
             outFile>>count_work;
             while(k<count_work){
-                QString ID;
-                double workTime;
-                QString workTitle;
-                QString entityID;
-                outFile>>ID;
-                outFile>>workTime;
-                outFile>>workTitle;
+                Work* w = new Work();
+                char* entityID;
+                outFile >> w;
                 outFile>>entityID;
-                Entity* we = this->content->entitieById(entityID.toStdString());
-                this->addWork(ID.toStdString(), workTime, workTitle.toStdString(), we);
+                Entity* we = this->content->entitieById(string(entityID));
+                //this->addWork(ID.toStdString(), workTime, workTitle.toStdString(), we);
+                this->addUserWork(w);
                 k++;
             }
             k=0;
@@ -341,10 +346,11 @@ bool Core::loadProject(string file){
             inFile<<this->content->getWorksCount();
             while (i<this->content->getWorksCount()){
                 w= this->content->getWorkAt(i);
-                inFile<<(QString::fromStdString(w->getID()));
-                inFile<<(w->getWorkTime());
-                inFile<<(QString::fromStdString(w->getWorkTitle()));
-                inFile<<(QString::fromStdString(w->getEntity()->getID()));
+                inFile <<w;
+                //inFile<<(QString::fromStdString(w->getID()));
+                //inFile<<(w->getWorkTime());
+                //inFile<<(QString::fromStdString(w->getWorkTitle()));
+                //inFile<<(QString::fromStdString(w->getEntity()->getID()));
                 i++;
             }
             i=0;

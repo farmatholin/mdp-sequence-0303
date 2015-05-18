@@ -6,11 +6,11 @@
 #include <iostream>
 #include "List.h"
 #include "Sequence.h"
+#include "Entity.h"
 
 //=====================================================
 using namespace std;
 
-class Entity;
 class Sequence;
 
 class Work
@@ -40,6 +40,32 @@ public:
 	Sequence* getSequinceTo();
 
     explicit Work(string ID, double workTime, string worktTitle);
+    Work();
 	~Work();
+
+
 };
+template <typename Stream>
+Stream & operator>>(Stream &os, Work* w) {
+    char* ID;
+    char* workTitle;
+    double workTime;
+
+    os >> ID;
+    os >> workTime;
+    os >> workTitle;
+    w->setID(string(ID));
+    w->setWorkTime(workTime);
+    w->setWorkTitle(string(workTitle));
+
+    return os;
+}
+template <typename Stream>
+Stream & operator<<(Stream &os, Work* w) {
+    os << w->getID().c_str();
+    os << w->getWorkTime();
+    os << w->getWorkTitle().c_str();
+    os << w->getEntity()->getID().c_str();
+    return os;
+}
 #endif

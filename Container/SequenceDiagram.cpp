@@ -43,6 +43,14 @@ List<Entity*>* SequenceDiagram::getAllEntities(){
     return this->entities;
 }
 
+List<Work *> *SequenceDiagram::getAllWorks(){
+    return this->works;
+}
+
+List<Sequence *> *SequenceDiagram::getAllSequences(){
+    return this->sequences;
+}
+
 void SequenceDiagram::addEntity(string ID){
     this->entities->push_back(new Entity(ID));
 }

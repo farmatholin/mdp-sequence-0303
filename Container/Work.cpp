@@ -7,6 +7,13 @@ Work::Work(string ID, double workTime, string workTitle){
     this->workEntity = NULL;
 }
 
+Work::Work(){
+    this->ID = "";
+    this->workTime = 0;
+    this->workTitle = "";
+    this->workEntity = NULL;
+}
+
 Work::~Work(){
     //delete(to);
 	//delete(from);

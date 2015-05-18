@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
     Entity* pm = ef->createEntity(TYPE_PROJECT_MANAGER);
     Entity* pr = ef->createEntity(TYPE_PROGRAMMER);
     Entity* qa = ef->createEntity(TYPE_QA);
+
     c->addUserEntity(pm);
     c->addUserEntity(pr);
     c->addUserEntity(qa);
@@ -55,6 +56,7 @@ int main(int argc, char *argv[])
     printf("\n=============================Core LOAD END====================================\n");
 
     //End Testing ----------------------------------
+
     QApplication a(argc, argv);
     MainWindow w;
     w.show();

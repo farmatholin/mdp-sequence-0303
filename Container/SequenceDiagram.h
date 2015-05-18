@@ -29,6 +29,8 @@ public:
     int getWorksCount();
     int getSequencesCount();
     List<Entity*>* getAllEntities();
+    List<Work*>* getAllWorks();
+    List<Sequence*>* getAllSequences();
 
 public:
     void addEntity(string ID);
