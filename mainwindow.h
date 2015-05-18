@@ -35,6 +35,10 @@ private slots:
 
     void on_addSequenceButon_clicked();
 
+    void on_generateReport_clicked();
+
+    void on_saveButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 

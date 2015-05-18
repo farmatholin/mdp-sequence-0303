@@ -7,6 +7,7 @@
 #include <QSizePolicy>
 #include <QMapIterator>
 
+#include <QFileDialog>
 #include <QMessageBox>
 
 #include <QScrollArea>
@@ -165,7 +166,8 @@ void MainWindow::on_addSequenceButon_clicked()
             }
         }
     }
-
+    this->core->addSequence(ui->fromWorkSelector->currentData().toString().toStdString()+ui->toWorkSelector->currentData().toString().toStdString(),
+                            "doWOrk",fromWork,toWork);
     QWidget *widget = new QWidget(ui->widget);
 
     if (fromUIWork->geometry().x() < toUIWork->geometry().x()) {
@@ -176,4 +178,15 @@ void MainWindow::on_addSequenceButon_clicked()
 
     widget->setStyleSheet("background-color: black;");
     widget->show();
+}
+
+void MainWindow::on_generateReport_clicked()
+{
+    ui->reportEdit->setPlainText(this->core->createReview().c_str());
+}
+
+void MainWindow::on_saveButton_clicked()
+{
+    string filename = QFileDialog::getSaveFileName(ui->widget, "Сохранение файла", "~", tr("Sequence diagram (*.sd)")).toStdString();
+    this->core->saveProject(filename);
 }
