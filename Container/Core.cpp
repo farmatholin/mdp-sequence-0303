@@ -269,6 +269,7 @@ bool Core::loadProject(string file){
                 outFile >> w;
                 outFile>>entityID;
                 Entity* we = this->content->entitieById(string(entityID));
+                w->setEntity(we);
                 //this->addWork(ID.toStdString(), workTime, workTitle.toStdString(), we);
                 this->addUserWork(w);
                 k++;
