@@ -76,6 +76,8 @@ void MainWindow::on_addEntityButton_clicked()
     }
 
     this->interace->addEntity(entity);
+    this->core->addUserEntity(entity);
+
     ui->priceEntity->setText("0");
     ui->entityName->setText("");
 }
@@ -96,6 +98,9 @@ void MainWindow::on_addTaskButton_clicked()
     Work *work = new Work(name + QString(rand() % 10000).toStdString(), time, ui->workNameEdit->text().toStdString());
 
     this->interace->addWork(work, entity);
+    entity->addWork(work);
+    this->core->addUserWork(work);
+    work->setEntity(entity);
 }
 
 void MainWindow::on_updateEntityButton_clicked()
@@ -173,7 +178,7 @@ void MainWindow::on_addSequenceButon_clicked()
     if (fromUIWork->geometry().x() < toUIWork->geometry().x()) {
         widget->setGeometry(fromUIWork->geometry().x() + UIWork::WIDTH , fromUIWork->geometry().y() + (UIWork::HEIGHT / 2), toUIWork->geometry().x() - fromUIWork->geometry().x() - (UIWork::WIDTH / 2), 2);
     } else {
-        widget->setGeometry(toUIWork->geometry().x(), fromUIWork->geometry().y() + (UIWork::HEIGHT / 2), fromUIWork->geometry().x() - toUIWork->geometry().x(), 2);
+        widget->setGeometry(toUIWork->geometry().x(), fromUIWork->geometry().y() + UIWork::HEIGHT, fromUIWork->geometry().x() - toUIWork->geometry().x(), 2);
     }
 
     widget->setStyleSheet("background-color: black;");
@@ -187,6 +192,54 @@ void MainWindow::on_generateReport_clicked()
 
 void MainWindow::on_saveButton_clicked()
 {
-    string filename = QFileDialog::getSaveFileName(ui->widget, "Сохранение файла", "~", tr("Sequence diagram (*.sd)")).toStdString();
+    string filename = QFileDialog::getSaveFileName(ui->widget, "Сохранение файла", "~", tr("Sequence diagram (*)")).toStdString();
     this->core->saveProject(filename);
+}
+
+void MainWindow::on_loadButton_clicked()
+{
+    string filename = QFileDialog::getOpenFileName(ui->widget, "Сохранение файла", "~", tr("Sequence diagram (*)")).toStdString();
+    this->core->loadProject(filename);
+
+    List <Entity *> *entities = this->core->getAllEntities();
+    for (int i = 0; i < entities->size(); i++) {
+        this->interace->addEntity(entities->at(i));
+    }
+
+    List <Work *> *works = this->core->getAllWorks();
+    for (int i = 0; i < works->size(); i++) {
+        this->interace->addWork(works->at(i), works->at(i)->getEntity());
+    }
+
+    List <Sequence *> *sequences = this->core->getAllSequences();
+    for (int i = 0; i < sequences->size(); i++) {
+
+        UIWork *fromUIWork, *toUIWork;
+
+        QList <UIWork *> works = ui->widget->findChildren<UIWork *>();
+        for (int j = 0; j < works.count(); j++) {
+
+            if (works.at(j)->toolTip() == "uiwork") {
+
+                if (works.at(j)->getWork() == sequences->at(i)->getWorkTo()) {
+                    toUIWork = works.at(j);
+                }
+
+                if (works.at(j)->getWork() == sequences->at(i)->getWorkFrom()) {
+                    fromUIWork = works.at(j);
+                }
+            }
+        }
+
+        QWidget *widget = new QWidget(ui->widget);
+
+        if (fromUIWork->geometry().x() < toUIWork->geometry().x()) {
+            widget->setGeometry(fromUIWork->geometry().x() + (UIWork::WIDTH / 2) , fromUIWork->geometry().y() - 20, toUIWork->geometry().x() - fromUIWork->geometry().x() - (UIWork::WIDTH / 2), 2);
+        } else {
+            widget->setGeometry(toUIWork->geometry().x()+UIWork::WIDTH, fromUIWork->geometry().y() - 20, fromUIWork->geometry().x() - toUIWork->geometry().x() - (UIWork::WIDTH / 2), 2);
+        }
+
+        widget->setStyleSheet("background-color: black;");
+        widget->show();
+    }
 }
